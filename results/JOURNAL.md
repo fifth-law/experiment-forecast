@@ -480,3 +480,20 @@ loop on stage3 only. Runtime note: stage3 full runs will exceed the
 ~10-minute guidance (more cutoffs × longer histories); the budget
 allows sub-sampled development runs, but leaderboard rows stay full
 runs.
+
+Promotion results (stage3): 027 = 0.237190, 025 = 0.237247, 028 =
+0.238502 — a MILD RESHUFFLE: 027/025 effectively tied and stable,
+while 028 (stage2's winner) slipped. The age features helped 2024's
+onboarding wave but do not generalize to 2025–26 where all 104 scored
+series are mature — a one-change era-overfit, worth remembering when
+recommending the final model. Champion: 027. Stage3 is easier than
+stage2 overall (tail recovered to 0.187 as g5_tail churn composition
+settled). New residual structure: per-cutoff biases are mostly flat
+(calendar machinery generalizes; December residual 0.32–0.39 with
+|bias| ≤ 0.08 is composition noise), and the error mass concentrates
+in a few erratic high-volume customers — c_387459 (0.65 at 2.45M
+volume, bias −0.07) is ~10% of ALL stage3 error by itself, with
+c_399062/c_397088 similar shapes. Near-zero bias + huge wMAPE =
+spike-timing volatility: the |err|-optimal forecast there is the
+conditional MEDIAN, which only the L1 head provides and the blend
+dilutes. Runtime ~20 min per stage3 run.
