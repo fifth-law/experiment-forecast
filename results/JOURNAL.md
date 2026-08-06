@@ -180,3 +180,19 @@ Format:
   learned per-week factors → next experiment. December run-up weeks
   (Nov-27 −0.26) queued after with the same generalized machinery
   (up-factors this time).
+
+## 011_summer_weeks @ stage1 — 2026-08-06
+- hypothesis: the summer dip (industriferie) is ISO-week-anchored and
+  calendar-predictable like the May cluster: sum_wk25..32 damp factors,
+  estimated against pre-week-25 bases (with ordered-group deflation for
+  asc days in those bases), fix both directions of the June–August bias.
+- result: wMAPE 0.2285 vs 0.2333 — improved 2.06% relative. Current best.
+- learned: the summer block collapsed — 06-12 bias +0.16→+0.04 (wMAPE
+  −0.04), 07-10 +0.17→+0.03 (−0.06), 07-24 −0.18→−0.04 (−0.06), 07-31
+  −0.17→−0.05 (−0.06). Vacation damping was a bigger rock than any single
+  event. Worst cutoffs are now Dec-18 (0.47), Nov-27 (0.31, −0.26),
+  Nov-13/20 (0.29), May cluster residuals (0.25–0.29, biases ±0.09–0.14),
+  Jan-02/09. The May/summer residual biases suggest composition: vacation
+  appetite is series-specific (B2B dies in July, B2C less so) → next:
+  per-series damp multipliers, the same generalization that made 007 the
+  biggest win. December run-up weeks still queued.
