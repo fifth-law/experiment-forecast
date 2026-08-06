@@ -550,3 +550,15 @@ dilutes. Runtime ~20 min per stage3 run.
   coupled step (lr 0.06→0.045, rounds 450→650 — the conventional
   slower-learning trade) before the stall rule decides. Runtime now
   ~45 min/run.
+
+## 033_blend3_slowlr @ stage3 — 2026-08-06
+- hypothesis: the conventional lr/rounds trade squeezes the last of the
+  capacity axis.
+- result: wMAPE 0.233331 vs 0.233639 — +0.13%, sub-bar. New best but
+  counter 1/3.
+- learned: the geometric decay predicted this almost exactly (0.61 →
+  0.44 → 0.13): the GBM capacity/data axis is spent. Remaining shots are
+  small-variance mechanisms; if two more miss, stage3 stalls and the
+  final summary follows. Next: hand-head weekday shape from 6 clean
+  observations instead of 4 (variance reduction weighted toward the
+  mature, volume-dominant series).
