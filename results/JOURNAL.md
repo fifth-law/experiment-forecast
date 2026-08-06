@@ -404,3 +404,15 @@ below 0.3% relative). Stage1 final state: best 0.199104
 relative. Per protocol: re-running the stage1 top 3 (024, 023, 021) on
 stage2 (2024 cutoffs, train from 2021), then continuing the loop on
 stage2 only.
+
+Promotion results (stage2): 024 = 0.2508, 023 = 0.2521, 021 = 0.2539 —
+**rank order identical to stage1**, no era-overfitting signal; the
+stage1 improvements generalize. Stage2 is harder (0.2508 vs 0.1991) and
+the decomposition says why: customers held (0.2244→0.2430) while the
+tail nearly doubled (0.1425→0.2699), dominated by g5_tail (wMAPE 0.28
+at 9.9M volume, bias ≈0). Worst cutoffs are non-calendar: 02-26 bias
+−0.33, a Sep–Oct cluster alternating ±0.11..±0.27, plus the usual
+Dec-16 wind-down (+0.20). Signature of STEP CHANGES — onboarding ramps
+(c_387459 at 0.73), churn (2024-big accounts that fell out of the
+2025–26 reference window sit inside g5_tail), migrations. Stage2's
+axis is adaptivity, not more calendar.
