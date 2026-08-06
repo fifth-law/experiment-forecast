@@ -106,3 +106,15 @@ Format:
   "indeklemt fredag") is not in the special set; (d) Dec-18 residual 0.49.
   Next: ascension bridge day (3-line change, proven mechanism), then
   per-series event multipliers for BF week.
+
+## 006_ascension_bridge @ stage1 — 2026-08-06
+- hypothesis: the Friday after Ascension is a de-facto Danish closing day;
+  adding it as a learned day-type fixes the May bias oscillation.
+- result: wMAPE 0.24166 vs 0.24169 — flat (+0.013% relative). Below the
+  0.3% bar: stall counter 1/3.
+- learned: falsified — the learned factor is ≈1, i.e. this network ships
+  nearly normally on the bridge Friday (b2c warehouses, not offices). The
+  May 05-08/05-15 bias (+0.16, +0.13) therefore comes from level dynamics
+  around the holiday cluster, not a missing closing day. Keeping the
+  day-type (harmless by construction). Next: per-series BF-week
+  multipliers for the Nov-13/20 composition error.
