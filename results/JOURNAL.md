@@ -447,3 +447,36 @@ axis is adaptivity, not more calendar.
   not global → next: recency weighting ONLY for the year-boundary
   family (dec-types, xmas holidays, runup, xmas multiplier, jan_wk1),
   flat weights elsewhere, GBM untouched.
+
+## 027_blend3_xmas_recency @ stage2 — 2026-08-06
+- hypothesis: scoping the half-life-1y weights to the year-boundary
+  family keeps 026's Dec-16 gain without the stable-response tax.
+- result: wMAPE 0.247777 vs 0.2480 — new best, but +0.10% is under the
+  bar. Stall counter 2/3.
+- learned: exactly as designed (Dec-16 kept its gain, November stayed at
+  025 levels), but the year-boundary family is only worth ~0.1% pooled
+  on stage2. Correct mechanism, small lever.
+
+## 028_blend3_age @ stage2 — 2026-08-06
+- hypothesis: age_days + active_60 features give the GBM onboarding/
+  churn awareness — stage2's dominant blind spot.
+- result: wMAPE 0.2475 vs 0.247777 — new best, but +0.13% is under the
+  bar. THIRD consecutive sub-0.3% → STALL RULE FIRES.
+- learned: customers improved (0.2410→0.2403) as the ramp-awareness
+  hypothesis predicted, but the pooled lever is small — most ramp error
+  sits in g5_tail whose churn composition is invisible at series
+  granularity (already journaled as irreducible without account-level
+  data, which the frozen snapshot deliberately excludes).
+
+## STAGE PROMOTION: stage2 → stage3 — 2026-08-06
+
+Stall rule fired (026 −0.16%, 027 +0.10%, 028 +0.13%). Stage2 final:
+best 0.2475 (028_blend3_age); stage2 was structurally harder than
+stage1 (0.2475 vs 0.1991) because 2024's tail — dominated by g5_tail
+churn composition — nearly doubled in error while customers held.
+Re-running the stage2 top 3 (028, 027, 025) on stage3 (2025-01 →
+2026-05 cutoffs, ~72 Mondays, train from 2021), then continuing the
+loop on stage3 only. Runtime note: stage3 full runs will exceed the
+~10-minute guidance (more cutoffs × longer histories); the budget
+allows sub-sampled development runs, but leaderboard rows stay full
+runs.
