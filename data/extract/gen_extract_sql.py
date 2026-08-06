@@ -43,19 +43,19 @@ MCP_RESULTS_DIR = os.path.join(REPO, "data", "raw", "mcp_results")
 MEMBERSHIP_CSV = os.path.join(HERE, "membership.csv")
 SQL_DIR = os.path.join(HERE, "sql")
 
-EXTRACT_VERSION = 1
+EXTRACT_VERSION = 2  # v2: dropped RETURN_AT IS NULL from the filters (owner decision
+# 2026-08-06): an outbound shipment that later comes back as a passive return still
+# shipped, so it counts. Booked returns and cancellations stay excluded.
 SLICE_CHARS = 40_000
 SNAPSHOT_START = "2021-01-01"
 SNAPSHOT_END = "2026-08-05"
 REF_WINDOW = ("2025-08-06", "2026-08-05")
 # Tail group rank boundaries (inclusive upper rank), derived from the
-# cumulative-volume quintile query captured as /*SNAPMETA name=tail_groups*/
-TAIL_BOUNDS = [(116, "g1_tail"), (137, "g2_tail"), (170, "g3_tail"), (270, "g4_tail")]
+# cumulative-volume quintile query captured as /*SNAPMETA name=tail_groups v=2*/
+TAIL_BOUNDS = [(116, "g1_tail"), (138, "g2_tail"), (170, "g3_tail"), (270, "g4_tail")]
 CATCH_ALL = "g5_tail"
 
-SHIPMENT_FILTERS = (
-    "s.IS_BOOKED_RETURN = FALSE AND s.RETURN_AT IS NULL AND s.CANCEL_AT IS NULL"
-)
+SHIPMENT_FILTERS = "s.IS_BOOKED_RETURN = FALSE AND s.CANCEL_AT IS NULL"
 
 YEARS = [
     (2021, "2021-01-01", "2021-12-31"),
@@ -88,9 +88,9 @@ def _load_marked_result(marker: str) -> list[list[str]]:
 
 
 def emit_membership() -> None:
-    top100 = _load_marked_result("SNAPMETA name=top100 v=1")
-    tail = _load_marked_result("SNAPMETA name=member_map_tail v=1")
-    first = dict(_load_marked_result("SNAPMETA name=first_dates v=1"))
+    top100 = _load_marked_result(f"SNAPMETA name=top100 v={EXTRACT_VERSION}")
+    tail = _load_marked_result(f"SNAPMETA name=member_map_tail v={EXTRACT_VERSION}")
+    first = dict(_load_marked_result(f"SNAPMETA name=first_dates v={EXTRACT_VERSION}"))
 
     rows = []
     for acct, name, n_ref, rk in top100:
@@ -171,9 +171,11 @@ lines AS (
   FROM dense GROUP BY series_id
 ),
 payload AS (
+  -- NB: LISTAGG's delimiter must be a compile-time constant in Snowflake;
+  -- CHR(10) is rejected there, so use the backslash-n escape literal instead.
   SELECT 'v{EXTRACT_VERSION},' || TO_VARCHAR((SELECT COUNT(*) FROM serieslist)) || ','
-         || TO_VARCHAR((SELECT COUNT(*) FROM spine)) || ',{start},{end}' || CHR(10)
-         || LISTAGG(line, CHR(10)) WITHIN GROUP (ORDER BY line) AS p
+         || TO_VARCHAR((SELECT COUNT(*) FROM spine)) || ',{start},{end}\\n'
+         || LISTAGG(line, '\\n') WITHIN GROUP (ORDER BY line) AS p
   FROM lines
 )"""
 
@@ -217,11 +219,35 @@ def emit_slices(year: int, payload_len: int) -> None:
     print(f"wrote {len(offsets)} slice files for {year} under {year_dir}")
 
 
+def emit_slices_from_captures() -> None:
+    """Read hook-captured meta results and emit slice SQL for every year."""
+    import re
+
+    marker = re.compile(rf"/\*SNAP kind=meta y=(\d{{4}}) v={EXTRACT_VERSION}\*/")
+    found = {}
+    for name in sorted(os.listdir(os.path.join(REPO, "data", "raw", "mcp_results"))):
+        if not name.endswith(".json"):
+            continue
+        path = os.path.join(REPO, "data", "raw", "mcp_results", name)
+        with open(path, encoding="utf-8") as fh:
+            doc = json.load(fh)
+        m = marker.search(doc.get("tool_input", {}).get("sql", ""))
+        if m:
+            data = json.loads(doc["tool_response"][0]["text"])["result_set"]["data"]
+            found[int(m.group(1))] = int(data[0][0])
+    for year, _, _ in YEARS:
+        if year not in found:
+            print(f"{year}: no meta capture yet — skipped")
+            continue
+        emit_slices(year, found[year])
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--emit-membership", action="store_true")
     parser.add_argument("--emit-year-sql", action="store_true")
     parser.add_argument("--emit-slices", nargs=2, metavar=("YEAR", "PAYLOAD_LEN"), type=int)
+    parser.add_argument("--emit-slices-from-captures", action="store_true")
     args = parser.parse_args()
     if args.emit_membership:
         emit_membership()
@@ -229,7 +255,14 @@ def main() -> None:
         emit_year_sql()
     if args.emit_slices:
         emit_slices(args.emit_slices[0], args.emit_slices[1])
-    if not (args.emit_membership or args.emit_year_sql or args.emit_slices):
+    if args.emit_slices_from_captures:
+        emit_slices_from_captures()
+    if not (
+        args.emit_membership
+        or args.emit_year_sql
+        or args.emit_slices
+        or args.emit_slices_from_captures
+    ):
         parser.print_help()
         sys.exit(1)
 

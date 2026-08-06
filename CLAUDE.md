@@ -89,8 +89,8 @@ model and leave holdout to the human owner.
   onboard and churn mid-history (the eval masks series before their
   `first_date`; churn-to-zero is scored).
 - Snapshot: daily counts 2021-01-01 → 2026-08-05, outbound non-cancelled
-  shipments only (`IS_BOOKED_RETURN=FALSE, RETURN_AT IS NULL,
-  CANCEL_AT IS NULL`).
+  shipments (`IS_BOOKED_RETURN=FALSE, CANCEL_AT IS NULL`; shipments that
+  later became passive returns still count).
 
 ## Setup
 

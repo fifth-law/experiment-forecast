@@ -10,7 +10,7 @@ leaderboard. The loop protocol lives in [CLAUDE.md](CLAUDE.md).
 | Decision | Value | Where |
 |---|---|---|
 | Data source | Snowflake `MARTS.ANALYTICS.SHIPMENTS` (frozen extract) | `data/extract/` |
-| Target | Daily shipment count per series, outbound non-cancelled (`IS_BOOKED_RETURN=FALSE, RETURN_AT IS NULL, CANCEL_AT IS NULL`) | `data/snapshot/series_meta.json` |
+| Target | Daily shipment count per series, outbound non-cancelled (`IS_BOOKED_RETURN=FALSE, CANCEL_AT IS NULL`; passive returns still count — the outbound leg shipped) | `data/snapshot/series_meta.json` |
 | Series | Top-100 customers (94% of volume) + 5 tail groups (volume-quintile bands of the rest) = 105 series partitioning network volume | `data/extract/membership.csv` |
 | Horizon | 14 days, from weekly Monday cutoffs | `eval/stages.yaml` |
 | Primary metric | Pooled wMAPE (Σ\|err\| / Σactual over all scored series-days) | `eval/metrics.py` |

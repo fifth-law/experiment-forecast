@@ -159,7 +159,8 @@ def main() -> None:
         "reference_window": {"start": REF_WINDOW[0], "end": REF_WINDOW[1]},
         "target_definition": (
             "daily count of shipments by CREATED_AT_DATE from MARTS.ANALYTICS.SHIPMENTS "
-            "with IS_BOOKED_RETURN=FALSE AND RETURN_AT IS NULL AND CANCEL_AT IS NULL"
+            "with IS_BOOKED_RETURN=FALSE AND CANCEL_AT IS NULL (passive returns count: "
+            "the outbound shipment still shipped)"
         ),
         "membership_note": (
             "top-100 customers by shipments in the reference window; remaining ranked "
