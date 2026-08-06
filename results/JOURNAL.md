@@ -212,3 +212,18 @@ Format:
   long anchor→day gaps use pooled factors only. (Whether vacation
   appetite is truly persistent per series remains unknown — the estimator
   couldn't measure it.)
+
+## 013_dec_runup @ stage1 — 2026-08-06
+- hypothesis: the December run-up (Cyber Monday → ~Dec 19) is a mild
+  calendar-anchored lift; runup_w1–3 up-factors (clip 0.8–2.0, pre-BF
+  anchor) fix the Nov-27 regime blindness that 009 failed on.
+- result: wMAPE 0.2264 vs 0.2285 — improved 0.92% relative. Current best.
+  Global bias now −0.001 (was −1.4% at 001); network wMAPE 0.0954.
+- learned: Nov-27 0.31→0.27 with bias −0.26→+0.03, Nov-20 also improved
+  (runup days in its horizon), zero regressions. The mild-factor damp
+  machinery is now the workhorse: 5 of the last 7 accepted changes use
+  it. Remaining rocks: Dec-18 0.47 (+0.20, YoY drift in wind-down depth
+  with only 2 observations — may be irreducible by hand), Nov-13/20/27
+  ~0.27–0.29 (bias ~0, event-week noise), May cluster 0.25–0.29 (±0.09–
+  0.14), Jan-09 0.27 (+0.18). Next: January intra-month decay via a
+  forward-anchored base ([Jan 2, Jan 8]) in the damp machinery.
