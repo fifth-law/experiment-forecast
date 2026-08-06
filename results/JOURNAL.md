@@ -344,3 +344,15 @@ Format:
   exactly the regime it most needs; worst-cutoff mining caught it only
   because the blend diluted the zero into a visible −0.67 bias. Next:
   re-blend 015 + fixed L1/L2 heads (021).
+
+## 021_blend3_v2 @ stage1 — 2026-08-06
+- hypothesis: the blend gains were genuine residual diversity, not
+  hole-masking; equal thirds with the fixed heads beats 0.2050.
+- result: wMAPE 0.2001 vs 0.2050 — improved 2.39% relative. Current
+  best. Network wMAPE 0.0789 (best yet), bias −1.2%.
+- learned: confirmed — the three families remain complementary after the
+  fix. Cumulative: 0.2938 (naive floor) → 0.2001, −32% relative; the
+  split is roughly: calendar structure (002–015) −15%, GBM + fix
+  (017/020) −8%, blending (018–021) −9% of what remained. Runtime ~8 min
+  per stage run (budget edge — no room for a fourth GBM head; further
+  gains must come from inside the heads or the hand stack).
