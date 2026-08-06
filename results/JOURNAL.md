@@ -227,3 +227,18 @@ Format:
   ~0.27–0.29 (bias ~0, event-week noise), May cluster 0.25–0.29 (±0.09–
   0.14), Jan-09 0.27 (+0.18). Next: January intra-month decay via a
   forward-anchored base ([Jan 2, Jan 8]) in the damp machinery.
+
+## 014_school_vacations @ stage1 — 2026-08-06
+- hypothesis: the remaining February (+0.11/+0.15→−0.08/−0.13) and October
+  (+0.07→−0.12/−0.16) bias swings are vinterferie (ISO wk 7–8) and
+  efterårsferie (wk 41–43) — the summer signature twice more.
+- result: wMAPE 0.2248 vs 0.2264 — improved 0.71% relative. Current best.
+- learned: February collapsed as designed (02-06 0.23→0.20, 02-13
+  0.24→0.20, 02-20/27 better, biases halved); October only partial —
+  Oct-09 improved but Oct-23/30 barely moved and Oct-16 ticked down, so
+  the wk-42 dip is weaker/less year-stable than vinterferie. Mar-06
+  ticked down (wk-8 deflation slightly over-lifts its level window).
+  Global bias now −0.0006. Next: January week 1 as an *up*-anomaly
+  (post-NY surge decaying to the true level) — a forward-anchored base
+  ([anchor+7, anchor+21)) rather than "weeks 2–4 low", which would break
+  the level chain at the February boundary.
