@@ -70,3 +70,20 @@ Format:
   wider clip), which both fixes the Nov-13/20 under-forecast and keeps
   BF week out of the level/profile windows that poison late-Nov/early-Dec
   cutoffs.
+
+## 004_black_friday @ stage1 — 2026-08-06
+- hypothesis: bf−4..bf+3 (calendar rule) as learned special-day types with
+  up-clip (0,5) fixes both the Nov-13/20 spike under-forecast and the BF
+  contamination of level windows at 11-27/12-04.
+- result: wMAPE 0.2471 vs 0.2515 — improved 1.75% relative. Current best.
+  Network wMAPE 0.1406→0.1212.
+- learned: (1) 12-04 fully fixed (0.32→0.23, bias +0.20→+0.02). (2) At the
+  BF cutoffs the bias collapsed (−0.36→−0.09, −0.30→+0.01) but wMAPE
+  barely moved (0.39 both) — the pooled network factor gets the aggregate
+  right and the composition wrong; customers differ in BF intensity →
+  candidate: per-series BF factors shrunk toward pooled. (3) 11-27
+  regressed (0.29→0.31, bias −0.26): with BF week excluded its level
+  window is pre-BF only and cannot see the December run-up regime.
+  (4) Dec-18 remains the worst cutoff (0.67, bias +0.41): Dec 20–23
+  wind-down and Dec 27–30 lull still forecast at full volume → next:
+  year-boundary day-type factors.
