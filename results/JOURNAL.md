@@ -526,3 +526,16 @@ dilutes. Runtime ~20 min per stage3 run.
   strangest weeks of the year. Next: double the GBM training-reference
   density (Monday+Thursday refs) — more (ref, lead) alignments per
   calendar event and per step, the most general capacity lever left.
+
+## 031_blend3_dualref @ stage3 — 2026-08-06
+- hypothesis: doubling GBM training refs (Mon+Thu) adds information —
+  2× (ref, lead) alignments per calendar event and step transition.
+- result: wMAPE 0.234628 vs 0.236039 — improved 0.61% relative. Current
+  best. Stall counter resets to 0.
+- learned: the gain concentrates at long leads (lead 8–14 0.2511→0.2487)
+  exactly where alignment diversity was thinnest. Ref density is an
+  information lever, unlike leaf capacity (024, +0.23%): worth more.
+  Runtime doubled to ~35 min/run — acceptable in background, but ~4×
+  (all-weekday refs) would hit diminishing returns on highly correlated
+  adjacent-day refs. Next instead: rebalance capacity to the 2× data —
+  num_boost_round 300→450 (300 was chosen for half this data).
