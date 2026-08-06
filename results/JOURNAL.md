@@ -276,3 +276,22 @@ Format:
   model over the same calendar/level feature knowledge — interactions
   (series × day-type × lead) are where a learned model can still beat
   the multiplicative stack.
+
+## 017_lgbm_global @ stage1 — 2026-08-06
+- hypothesis: a per-cutoff LightGBM over the same calendar/level
+  knowledge (day-type ids, lead, weekday, series, clean rolling levels,
+  same-weekday lag ratios; target y/L14, weight L14, L1) learns the
+  interactions the multiplicative stack cannot.
+- result: wMAPE 0.2189 vs 0.2232 — improved 1.93% relative. Current
+  best. Determinism verified (0.218880 twice); runtime 210 s.
+- learned: the gain concentrates exactly where hypothesized — lead 8–14
+  0.2354→0.2274, customers 0.2514→0.2442. Two structural properties:
+  (1) bias −5.5% — the L1 objective predicts conditional medians of a
+  right-skewed target, which is optimal for pooled wMAPE but costs
+  network-level accuracy (network wMAPE 0.0900→0.1064); if the business
+  ever scores network totals, an L2/tweedie variant or quantile blend
+  trades back. (2) The GBM and the hand stack (015) have differently
+  shaped residuals (median-chasing vs network-calibrated factors) →
+  next: 50/50 blend of 015 and 017, classic variance reduction across
+  model families. Justified lightgbm (installed extra) per the
+  modeling-guardrails note.
