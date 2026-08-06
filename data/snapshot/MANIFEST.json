@@ -1,0 +1,58 @@
+{
+  "extract_version": 2,
+  "built_from": "data/raw/mcp_results (hook-captured Snowflake MCP results)",
+  "years": {
+    "2021": {
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "payload_len": 97234,
+      "payload_md5": "b2055b22d0072fa6a5e312632ec68d24",
+      "n_slices": 3,
+      "total_shipments": 12621977
+    },
+    "2022": {
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "payload_len": 103610,
+      "payload_md5": "b7130400e8ba67c1e840786f70df14d0",
+      "n_slices": 3,
+      "total_shipments": 12868468
+    },
+    "2023": {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "payload_len": 112834,
+      "payload_md5": "e943f858450a0156a7327ace0ae380a6",
+      "n_slices": 3,
+      "total_shipments": 15475172
+    },
+    "2024": {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "payload_len": 120192,
+      "payload_md5": "f5f35be66e2c28d375ce56d445ce27e0",
+      "n_slices": 4,
+      "total_shipments": 19931885
+    },
+    "2025": {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "payload_len": 131766,
+      "payload_md5": "489fb7d99301ea0cd74f55a48c2c9782",
+      "n_slices": 4,
+      "total_shipments": 23724841
+    },
+    "2026": {
+      "start": "2026-01-01",
+      "end": "2026-08-05",
+      "payload_len": 83759,
+      "payload_md5": "fab66ec822a43aac16eff3f08db8a2c2",
+      "n_slices": 3,
+      "total_shipments": 16509747
+    }
+  },
+  "rows": 214515,
+  "series": 105,
+  "grand_total_shipments": 101132090,
+  "parquet_sha256": "f507bf66387fa13dc92a9802b401b9372374b93d236a7522525d047c076cdffd"
+}

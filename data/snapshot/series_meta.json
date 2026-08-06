@@ -1,0 +1,1120 @@
+{
+  "snapshot_start": "2021-01-01",
+  "snapshot_end": "2026-08-05",
+  "reference_window": {
+    "start": "2025-08-06",
+    "end": "2026-08-05"
+  },
+  "target_definition": "daily count of shipments by CREATED_AT_DATE from MARTS.ANALYTICS.SHIPMENTS with IS_BOOKED_RETURN=FALSE AND CANCEL_AT IS NULL (passive returns count: the outbound shipment still shipped)",
+  "membership_note": "top-100 customers by shipments in the reference window; remaining ranked accounts grouped into cumulative-volume quintile bands g1..g4 by rank bounds [(116, 'g1_tail'), (138, 'g2_tail'), (170, 'g3_tail'), (270, 'g4_tail')]; g5_tail catches rank>270 and accounts not active in the reference window. Membership is frozen; series partition total network volume exactly.",
+  "series": [
+    {
+      "series_id": "c_386811",
+      "kind": "customer",
+      "core_account_id": 386811,
+      "name": "Matas",
+      "rank": 1,
+      "n_ref": 3303096,
+      "first_date": "2023-01-18"
+    },
+    {
+      "series_id": "c_385616",
+      "kind": "customer",
+      "core_account_id": 385616,
+      "name": "Vend Marketplaces AS",
+      "rank": 2,
+      "n_ref": 2409092,
+      "first_date": "2022-09-07"
+    },
+    {
+      "series_id": "c_392013",
+      "kind": "customer",
+      "core_account_id": 392013,
+      "name": "Vend Marketplaces OY",
+      "rank": 3,
+      "n_ref": 1936844,
+      "first_date": "2023-11-17"
+    },
+    {
+      "series_id": "c_252603",
+      "kind": "customer",
+      "core_account_id": 252603,
+      "name": "Firtal Web A/S",
+      "rank": 4,
+      "n_ref": 1783976,
+      "first_date": "2019-03-30"
+    },
+    {
+      "series_id": "c_25",
+      "kind": "customer",
+      "core_account_id": 25,
+      "name": "Entertainment trading Aps",
+      "rank": 5,
+      "n_ref": 1319821,
+      "first_date": "2019-03-21"
+    },
+    {
+      "series_id": "c_387459",
+      "kind": "customer",
+      "core_account_id": 387459,
+      "name": "DILLING A/S",
+      "rank": 6,
+      "n_ref": 977791,
+      "first_date": "2024-01-29"
+    },
+    {
+      "series_id": "c_257565",
+      "kind": "customer",
+      "core_account_id": 257565,
+      "name": "Sinful ApS",
+      "rank": 7,
+      "n_ref": 873366,
+      "first_date": "2019-08-05"
+    },
+    {
+      "series_id": "c_23728",
+      "kind": "customer",
+      "core_account_id": 23728,
+      "name": "Luxplus ApS",
+      "rank": 8,
+      "n_ref": 781560,
+      "first_date": "2019-04-01"
+    },
+    {
+      "series_id": "c_399062",
+      "kind": "customer",
+      "core_account_id": 399062,
+      "name": "SPORT24",
+      "rank": 9,
+      "n_ref": 727196,
+      "first_date": "2025-04-28"
+    },
+    {
+      "series_id": "c_177708",
+      "kind": "customer",
+      "core_account_id": 177708,
+      "name": "Bodylab ApS",
+      "rank": 10,
+      "n_ref": 590811,
+      "first_date": "2019-04-01"
+    },
+    {
+      "series_id": "c_399115",
+      "kind": "customer",
+      "core_account_id": 399115,
+      "name": "Vend Marketplaces ApS",
+      "rank": 11,
+      "n_ref": 506058,
+      "first_date": "2024-11-22"
+    },
+    {
+      "series_id": "c_26690",
+      "kind": "customer",
+      "core_account_id": 26690,
+      "name": "Med24.dk ApS",
+      "rank": 12,
+      "n_ref": 495614,
+      "first_date": "2019-06-11"
+    },
+    {
+      "series_id": "c_372021",
+      "kind": "customer",
+      "core_account_id": 372021,
+      "name": "Cykelgear A/S",
+      "rank": 13,
+      "n_ref": 446940,
+      "first_date": "2022-01-24"
+    },
+    {
+      "series_id": "c_199826",
+      "kind": "customer",
+      "core_account_id": 199826,
+      "name": "YarnLiving",
+      "rank": 14,
+      "n_ref": 413945,
+      "first_date": "2019-07-27"
+    },
+    {
+      "series_id": "c_84515",
+      "kind": "customer",
+      "core_account_id": 84515,
+      "name": "Watery ApS",
+      "rank": 15,
+      "n_ref": 389777,
+      "first_date": "2022-11-02"
+    },
+    {
+      "series_id": "c_401490",
+      "kind": "customer",
+      "core_account_id": 401490,
+      "name": "Blocket",
+      "rank": 16,
+      "n_ref": 381177,
+      "first_date": "2025-06-23"
+    },
+    {
+      "series_id": "c_276385",
+      "kind": "customer",
+      "core_account_id": 276385,
+      "name": "WhiteAway A/S",
+      "rank": 17,
+      "n_ref": 380770,
+      "first_date": "2019-07-01"
+    },
+    {
+      "series_id": "c_173537",
+      "kind": "customer",
+      "core_account_id": 173537,
+      "name": "Supervin Hjørring A/S",
+      "rank": 18,
+      "n_ref": 376516,
+      "first_date": "2020-04-08"
+    },
+    {
+      "series_id": "c_369661",
+      "kind": "customer",
+      "core_account_id": 369661,
+      "name": "MollyogMy ApS",
+      "rank": 19,
+      "n_ref": 353427,
+      "first_date": "2021-12-03"
+    },
+    {
+      "series_id": "c_400181",
+      "kind": "customer",
+      "core_account_id": 400181,
+      "name": "Helsam Gruppen",
+      "rank": 20,
+      "n_ref": 352650,
+      "first_date": "2025-03-26"
+    },
+    {
+      "series_id": "c_398131",
+      "kind": "customer",
+      "core_account_id": 398131,
+      "name": "GulogGratis.dk A/S",
+      "rank": 21,
+      "n_ref": 313381,
+      "first_date": "2025-01-27"
+    },
+    {
+      "series_id": "c_382027",
+      "kind": "customer",
+      "core_account_id": 382027,
+      "name": "Fashionbystrand",
+      "rank": 22,
+      "n_ref": 313181,
+      "first_date": "2023-01-25"
+    },
+    {
+      "series_id": "c_344104",
+      "kind": "customer",
+      "core_account_id": 344104,
+      "name": "Ditur.dk ApS",
+      "rank": 23,
+      "n_ref": 308516,
+      "first_date": "2020-08-26"
+    },
+    {
+      "series_id": "c_206225",
+      "kind": "customer",
+      "core_account_id": 206225,
+      "name": "LAKRIDS BY BÜLOW",
+      "rank": 24,
+      "n_ref": 305834,
+      "first_date": "2019-07-18"
+    },
+    {
+      "series_id": "c_402473",
+      "kind": "customer",
+      "core_account_id": 402473,
+      "name": "Web Sundhed",
+      "rank": 25,
+      "n_ref": 283756,
+      "first_date": "2025-10-31"
+    },
+    {
+      "series_id": "c_376922",
+      "kind": "customer",
+      "core_account_id": 376922,
+      "name": "Luksusbaby A/S",
+      "rank": 26,
+      "n_ref": 267532,
+      "first_date": "2021-11-15"
+    },
+    {
+      "series_id": "c_381875",
+      "kind": "customer",
+      "core_account_id": 381875,
+      "name": "Yuaia Haircare",
+      "rank": 27,
+      "n_ref": 257201,
+      "first_date": "2022-05-05"
+    },
+    {
+      "series_id": "c_397088",
+      "kind": "customer",
+      "core_account_id": 397088,
+      "name": "AO B2C",
+      "rank": 28,
+      "n_ref": 244407,
+      "first_date": "2024-09-30"
+    },
+    {
+      "series_id": "c_400860",
+      "kind": "customer",
+      "core_account_id": 400860,
+      "name": "AndrupVin.dk",
+      "rank": 29,
+      "n_ref": 237913,
+      "first_date": "2025-06-06"
+    },
+    {
+      "series_id": "c_402823",
+      "kind": "customer",
+      "core_account_id": 402823,
+      "name": "DSF WINE A/S",
+      "rank": 30,
+      "n_ref": 210223,
+      "first_date": "2025-10-30"
+    },
+    {
+      "series_id": "c_96674",
+      "kind": "customer",
+      "core_account_id": 96674,
+      "name": "BMD Trading Denmark Aps",
+      "rank": 31,
+      "n_ref": 199710,
+      "first_date": "2019-04-01"
+    },
+    {
+      "series_id": "c_400805",
+      "kind": "customer",
+      "core_account_id": 400805,
+      "name": "WanHe",
+      "rank": 32,
+      "n_ref": 195020,
+      "first_date": "2025-04-04"
+    },
+    {
+      "series_id": "c_367319",
+      "kind": "customer",
+      "core_account_id": 367319,
+      "name": "Nailster A/S",
+      "rank": 33,
+      "n_ref": 179601,
+      "first_date": "2021-05-11"
+    },
+    {
+      "series_id": "c_287588",
+      "kind": "customer",
+      "core_account_id": 287588,
+      "name": "Cykelpartner.dk",
+      "rank": 34,
+      "n_ref": 163955,
+      "first_date": "2019-10-28"
+    },
+    {
+      "series_id": "c_191066",
+      "kind": "customer",
+      "core_account_id": 191066,
+      "name": "HK Medie Group ApS",
+      "rank": 35,
+      "n_ref": 162335,
+      "first_date": "2019-03-29"
+    },
+    {
+      "series_id": "c_401743",
+      "kind": "customer",
+      "core_account_id": 401743,
+      "name": "PWT Group A/S",
+      "rank": 36,
+      "n_ref": 159394,
+      "first_date": "2026-02-05"
+    },
+    {
+      "series_id": "c_394259",
+      "kind": "customer",
+      "core_account_id": 394259,
+      "name": "Australian Bodycare",
+      "rank": 37,
+      "n_ref": 150824,
+      "first_date": "2024-01-12"
+    },
+    {
+      "series_id": "c_389096",
+      "kind": "customer",
+      "core_account_id": 389096,
+      "name": "BoldLight ApS",
+      "rank": 38,
+      "n_ref": 150692,
+      "first_date": "2023-04-21"
+    },
+    {
+      "series_id": "c_218501",
+      "kind": "customer",
+      "core_account_id": 218501,
+      "name": "Norlys Holding",
+      "rank": 39,
+      "n_ref": 148808,
+      "first_date": "2019-03-29"
+    },
+    {
+      "series_id": "c_259225",
+      "kind": "customer",
+      "core_account_id": 259225,
+      "name": "Badmintonshoppen-Retur",
+      "rank": 40,
+      "n_ref": 142986,
+      "first_date": "2021-07-26"
+    },
+    {
+      "series_id": "c_132184",
+      "kind": "customer",
+      "core_account_id": 132184,
+      "name": "Hairlust ApS",
+      "rank": 41,
+      "n_ref": 134300,
+      "first_date": "2019-07-26"
+    },
+    {
+      "series_id": "c_378875",
+      "kind": "customer",
+      "core_account_id": 378875,
+      "name": "Muscle House",
+      "rank": 42,
+      "n_ref": 128813,
+      "first_date": "2022-01-13"
+    },
+    {
+      "series_id": "c_383286",
+      "kind": "customer",
+      "core_account_id": 383286,
+      "name": "Vinylpladen ApS",
+      "rank": 43,
+      "n_ref": 123002,
+      "first_date": "2022-04-21"
+    },
+    {
+      "series_id": "c_377976",
+      "kind": "customer",
+      "core_account_id": 377976,
+      "name": "Tradera Marketplace",
+      "rank": 44,
+      "n_ref": 122455,
+      "first_date": "2022-03-25"
+    },
+    {
+      "series_id": "c_403515",
+      "kind": "customer",
+      "core_account_id": 403515,
+      "name": "LINDS A/S",
+      "rank": 45,
+      "n_ref": 117710,
+      "first_date": "2025-11-11"
+    },
+    {
+      "series_id": "c_268926",
+      "kind": "customer",
+      "core_account_id": 268926,
+      "name": "E-Handel 9000 ApS",
+      "rank": 46,
+      "n_ref": 116594,
+      "first_date": "2019-08-26"
+    },
+    {
+      "series_id": "c_374692",
+      "kind": "customer",
+      "core_account_id": 374692,
+      "name": "Onyxcookware ApS",
+      "rank": 47,
+      "n_ref": 101014,
+      "first_date": "2022-01-11"
+    },
+    {
+      "series_id": "c_361328",
+      "kind": "customer",
+      "core_account_id": 361328,
+      "name": "Scandinavian Biolabs ApS",
+      "rank": 48,
+      "n_ref": 95399,
+      "first_date": "2021-02-02"
+    },
+    {
+      "series_id": "c_384336",
+      "kind": "customer",
+      "core_account_id": 384336,
+      "name": "Too Good To Go ApS",
+      "rank": 49,
+      "n_ref": 90595,
+      "first_date": "2022-09-01"
+    },
+    {
+      "series_id": "c_385902",
+      "kind": "customer",
+      "core_account_id": 385902,
+      "name": "Mayflower",
+      "rank": 50,
+      "n_ref": 81645,
+      "first_date": "2022-10-28"
+    },
+    {
+      "series_id": "c_387799",
+      "kind": "customer",
+      "core_account_id": 387799,
+      "name": "TKJ Trading Aps",
+      "rank": 51,
+      "n_ref": 77144,
+      "first_date": "2023-01-11"
+    },
+    {
+      "series_id": "c_346934",
+      "kind": "customer",
+      "core_account_id": 346934,
+      "name": "Myextensions",
+      "rank": 52,
+      "n_ref": 74024,
+      "first_date": "2021-11-08"
+    },
+    {
+      "series_id": "c_382201",
+      "kind": "customer",
+      "core_account_id": 382201,
+      "name": "BLR APS",
+      "rank": 53,
+      "n_ref": 73903,
+      "first_date": "2022-07-26"
+    },
+    {
+      "series_id": "c_392152",
+      "kind": "customer",
+      "core_account_id": 392152,
+      "name": "Winther Studio ApS",
+      "rank": 54,
+      "n_ref": 70998,
+      "first_date": "2023-10-25"
+    },
+    {
+      "series_id": "c_390495",
+      "kind": "customer",
+      "core_account_id": 390495,
+      "name": "Quickparts",
+      "rank": 55,
+      "n_ref": 64666,
+      "first_date": "2023-09-05"
+    },
+    {
+      "series_id": "c_403428",
+      "kind": "customer",
+      "core_account_id": 403428,
+      "name": "Hong kong Soon limited",
+      "rank": 56,
+      "n_ref": 64500,
+      "first_date": "2025-11-07"
+    },
+    {
+      "series_id": "c_9895",
+      "kind": "customer",
+      "core_account_id": 9895,
+      "name": "BYIC",
+      "rank": 57,
+      "n_ref": 63055,
+      "first_date": "2019-07-29"
+    },
+    {
+      "series_id": "c_402390",
+      "kind": "customer",
+      "core_account_id": 402390,
+      "name": "Shop Group / GLADKOKKEN NO",
+      "rank": 58,
+      "n_ref": 61684,
+      "first_date": "2025-08-20"
+    },
+    {
+      "series_id": "c_365808",
+      "kind": "customer",
+      "core_account_id": 365808,
+      "name": "Gastrotools ApS",
+      "rank": 59,
+      "n_ref": 58926,
+      "first_date": "2021-05-03"
+    },
+    {
+      "series_id": "c_402036",
+      "kind": "customer",
+      "core_account_id": 402036,
+      "name": "Maya Freya Aps",
+      "rank": 60,
+      "n_ref": 54065,
+      "first_date": "2025-07-29"
+    },
+    {
+      "series_id": "c_389541",
+      "kind": "customer",
+      "core_account_id": 389541,
+      "name": "Summerbird A/S",
+      "rank": 61,
+      "n_ref": 50822,
+      "first_date": "2023-07-04"
+    },
+    {
+      "series_id": "c_387231",
+      "kind": "customer",
+      "core_account_id": 387231,
+      "name": "avXperten",
+      "rank": 62,
+      "n_ref": 48819,
+      "first_date": "2024-10-16"
+    },
+    {
+      "series_id": "c_403947",
+      "kind": "customer",
+      "core_account_id": 403947,
+      "name": "Kicks AB",
+      "rank": 63,
+      "n_ref": 47215,
+      "first_date": "2026-01-22"
+    },
+    {
+      "series_id": "c_405616",
+      "kind": "customer",
+      "core_account_id": 405616,
+      "name": "Goodiebox",
+      "rank": 64,
+      "n_ref": 47210,
+      "first_date": "2026-07-10"
+    },
+    {
+      "series_id": "c_397777",
+      "kind": "customer",
+      "core_account_id": 397777,
+      "name": "DistributionPlus A/S",
+      "rank": 65,
+      "n_ref": 46269,
+      "first_date": "2024-10-07"
+    },
+    {
+      "series_id": "c_399290",
+      "kind": "customer",
+      "core_account_id": 399290,
+      "name": "LikeLondon",
+      "rank": 66,
+      "n_ref": 45804,
+      "first_date": "2025-04-04"
+    },
+    {
+      "series_id": "c_377298",
+      "kind": "customer",
+      "core_account_id": 377298,
+      "name": "Asendia / Parcel4You",
+      "rank": 67,
+      "n_ref": 45743,
+      "first_date": "2022-03-14"
+    },
+    {
+      "series_id": "c_382888",
+      "kind": "customer",
+      "core_account_id": 382888,
+      "name": "Sindico Group A/S",
+      "rank": 68,
+      "n_ref": 45568,
+      "first_date": "2022-04-26"
+    },
+    {
+      "series_id": "c_309172",
+      "kind": "customer",
+      "core_account_id": 309172,
+      "name": "MAULUND A/S",
+      "rank": 69,
+      "n_ref": 45491,
+      "first_date": "2020-03-11"
+    },
+    {
+      "series_id": "c_384572",
+      "kind": "customer",
+      "core_account_id": 384572,
+      "name": "Nail4you Aps",
+      "rank": 70,
+      "n_ref": 45448,
+      "first_date": "2022-10-17"
+    },
+    {
+      "series_id": "c_8156",
+      "kind": "customer",
+      "core_account_id": 8156,
+      "name": "Noella Wholesale ApS",
+      "rank": 71,
+      "n_ref": 45305,
+      "first_date": "2019-03-31"
+    },
+    {
+      "series_id": "c_395218",
+      "kind": "customer",
+      "core_account_id": 395218,
+      "name": "Cdl Trading Aps",
+      "rank": 72,
+      "n_ref": 45075,
+      "first_date": "2024-03-06"
+    },
+    {
+      "series_id": "c_396922",
+      "kind": "customer",
+      "core_account_id": 396922,
+      "name": "Le Zest ApS",
+      "rank": 73,
+      "n_ref": 42119,
+      "first_date": "2024-06-12"
+    },
+    {
+      "series_id": "c_269091",
+      "kind": "customer",
+      "core_account_id": 269091,
+      "name": "Saphe A/S",
+      "rank": 74,
+      "n_ref": 41948,
+      "first_date": "2021-02-18"
+    },
+    {
+      "series_id": "c_290778",
+      "kind": "customer",
+      "core_account_id": 290778,
+      "name": "Albert Larsen ApS",
+      "rank": 75,
+      "n_ref": 41354,
+      "first_date": "2025-02-24"
+    },
+    {
+      "series_id": "c_403230",
+      "kind": "customer",
+      "core_account_id": 403230,
+      "name": "FirstGrade ApS",
+      "rank": 76,
+      "n_ref": 38423,
+      "first_date": "2025-10-28"
+    },
+    {
+      "series_id": "c_399224",
+      "kind": "customer",
+      "core_account_id": 399224,
+      "name": "Welldium",
+      "rank": 77,
+      "n_ref": 35787,
+      "first_date": "2025-07-10"
+    },
+    {
+      "series_id": "c_402167",
+      "kind": "customer",
+      "core_account_id": 402167,
+      "name": "Familien Digetvej ApS",
+      "rank": 78,
+      "n_ref": 35034,
+      "first_date": "2025-07-29"
+    },
+    {
+      "series_id": "c_400434",
+      "kind": "customer",
+      "core_account_id": 400434,
+      "name": "Dafolo A/S",
+      "rank": 79,
+      "n_ref": 34142,
+      "first_date": "2025-11-12"
+    },
+    {
+      "series_id": "c_351136",
+      "kind": "customer",
+      "core_account_id": 351136,
+      "name": "GoGift.com A/S",
+      "rank": 80,
+      "n_ref": 33435,
+      "first_date": "2020-11-20"
+    },
+    {
+      "series_id": "c_396518",
+      "kind": "customer",
+      "core_account_id": 396518,
+      "name": "ENAMEL Copenhagen",
+      "rank": 81,
+      "n_ref": 33241,
+      "first_date": "2024-05-22"
+    },
+    {
+      "series_id": "c_400693",
+      "kind": "customer",
+      "core_account_id": 400693,
+      "name": "Helsegrossisten.dk",
+      "rank": 82,
+      "n_ref": 32833,
+      "first_date": "2025-09-03"
+    },
+    {
+      "series_id": "c_400834",
+      "kind": "customer",
+      "core_account_id": 400834,
+      "name": "Aktieselskabet Glerups.dk",
+      "rank": 83,
+      "n_ref": 31209,
+      "first_date": "2025-05-28"
+    },
+    {
+      "series_id": "c_402741",
+      "kind": "customer",
+      "core_account_id": 402741,
+      "name": "Wavell",
+      "rank": 84,
+      "n_ref": 31129,
+      "first_date": "2025-09-23"
+    },
+    {
+      "series_id": "c_393021",
+      "kind": "customer",
+      "core_account_id": 393021,
+      "name": "DanGuitar",
+      "rank": 85,
+      "n_ref": 30795,
+      "first_date": "2023-10-19"
+    },
+    {
+      "series_id": "c_402234",
+      "kind": "customer",
+      "core_account_id": 402234,
+      "name": "Beatdown",
+      "rank": 86,
+      "n_ref": 30325,
+      "first_date": "2025-09-22"
+    },
+    {
+      "series_id": "c_395922",
+      "kind": "customer",
+      "core_account_id": 395922,
+      "name": "Bevco A/S",
+      "rank": 87,
+      "n_ref": 28471,
+      "first_date": "2024-04-19"
+    },
+    {
+      "series_id": "c_397165",
+      "kind": "customer",
+      "core_account_id": 397165,
+      "name": "The Army Painter",
+      "rank": 88,
+      "n_ref": 28383,
+      "first_date": "2024-08-15"
+    },
+    {
+      "series_id": "c_388439",
+      "kind": "customer",
+      "core_account_id": 388439,
+      "name": "Kagegrisen.dk ApS",
+      "rank": 89,
+      "n_ref": 27999,
+      "first_date": "2025-03-28"
+    },
+    {
+      "series_id": "c_392004",
+      "kind": "customer",
+      "core_account_id": 392004,
+      "name": "Price Mart SL",
+      "rank": 90,
+      "n_ref": 27607,
+      "first_date": "2023-09-25"
+    },
+    {
+      "series_id": "c_401901",
+      "kind": "customer",
+      "core_account_id": 401901,
+      "name": "P4U / Corazon",
+      "rank": 91,
+      "n_ref": 26633,
+      "first_date": "2025-07-14"
+    },
+    {
+      "series_id": "c_13877",
+      "kind": "customer",
+      "core_account_id": 13877,
+      "name": "Pulsure.dk ApS",
+      "rank": 92,
+      "n_ref": 26558,
+      "first_date": "2019-04-24"
+    },
+    {
+      "series_id": "c_402247",
+      "kind": "customer",
+      "core_account_id": 402247,
+      "name": "Perfect Jeans ApS",
+      "rank": 93,
+      "n_ref": 25925,
+      "first_date": "2025-08-01"
+    },
+    {
+      "series_id": "c_387785",
+      "kind": "customer",
+      "core_account_id": 387785,
+      "name": "Vinhuset  APS",
+      "rank": 94,
+      "n_ref": 25398,
+      "first_date": "2024-01-05"
+    },
+    {
+      "series_id": "c_382278",
+      "kind": "customer",
+      "core_account_id": 382278,
+      "name": "Caprock ApS",
+      "rank": 95,
+      "n_ref": 25028,
+      "first_date": "2025-11-07"
+    },
+    {
+      "series_id": "c_391896",
+      "kind": "customer",
+      "core_account_id": 391896,
+      "name": "Kaffekompagniet ApS",
+      "rank": 96,
+      "n_ref": 24715,
+      "first_date": "2023-09-15"
+    },
+    {
+      "series_id": "c_400390",
+      "kind": "customer",
+      "core_account_id": 400390,
+      "name": "Nordico Supply ApS",
+      "rank": 97,
+      "n_ref": 24527,
+      "first_date": "2025-05-06"
+    },
+    {
+      "series_id": "c_402243",
+      "kind": "customer",
+      "core_account_id": 402243,
+      "name": "Ecom World ApS",
+      "rank": 98,
+      "n_ref": 24419,
+      "first_date": "2025-08-11"
+    },
+    {
+      "series_id": "c_385816",
+      "kind": "customer",
+      "core_account_id": 385816,
+      "name": "Entertainment Trading A/S",
+      "rank": 99,
+      "n_ref": 24363,
+      "first_date": "2022-09-16"
+    },
+    {
+      "series_id": "c_400735",
+      "kind": "customer",
+      "core_account_id": 400735,
+      "name": "e-handel aps",
+      "rank": 100,
+      "n_ref": 23779,
+      "first_date": "2025-05-05"
+    },
+    {
+      "series_id": "g1_tail",
+      "kind": "tail_group",
+      "member_account_ids": [
+        352389,
+        367594,
+        382947,
+        387780,
+        389932,
+        390135,
+        395285,
+        396110,
+        397845,
+        399366,
+        399933,
+        401079,
+        402574,
+        403192,
+        403351,
+        404720
+      ],
+      "n_members_ranked": 16,
+      "first_date": "2021-01-01"
+    },
+    {
+      "series_id": "g2_tail",
+      "kind": "tail_group",
+      "member_account_ids": [
+        22206,
+        26449,
+        79561,
+        132664,
+        218857,
+        247194,
+        365387,
+        382637,
+        383788,
+        385878,
+        388019,
+        389020,
+        390549,
+        394645,
+        397721,
+        400835,
+        400944,
+        401163,
+        401647,
+        402222,
+        402466,
+        402577
+      ],
+      "n_members_ranked": 22,
+      "first_date": "2021-01-01"
+    },
+    {
+      "series_id": "g3_tail",
+      "kind": "tail_group",
+      "member_account_ids": [
+        27427,
+        240834,
+        301751,
+        349531,
+        357076,
+        368916,
+        369042,
+        372023,
+        372943,
+        374694,
+        382039,
+        384092,
+        386850,
+        392532,
+        392533,
+        394839,
+        397985,
+        398046,
+        398533,
+        399417,
+        399867,
+        399910,
+        399952,
+        400511,
+        400743,
+        400759,
+        401948,
+        401967,
+        402451,
+        403244,
+        403270,
+        403320
+      ],
+      "n_members_ranked": 32,
+      "first_date": "2021-01-01"
+    },
+    {
+      "series_id": "g4_tail",
+      "kind": "tail_group",
+      "member_account_ids": [
+        4,
+        283,
+        7911,
+        48257,
+        54898,
+        59604,
+        65045,
+        95584,
+        109465,
+        113750,
+        185654,
+        191704,
+        197594,
+        242463,
+        246556,
+        278753,
+        286381,
+        287902,
+        315218,
+        326784,
+        330767,
+        340758,
+        340853,
+        346321,
+        361464,
+        362765,
+        368130,
+        368333,
+        369110,
+        370723,
+        372244,
+        381750,
+        383211,
+        383642,
+        383961,
+        385669,
+        385880,
+        385940,
+        389283,
+        390034,
+        390048,
+        390303,
+        390834,
+        393338,
+        394952,
+        395000,
+        397011,
+        397423,
+        397658,
+        398079,
+        398135,
+        398331,
+        399009,
+        399072,
+        399205,
+        399305,
+        399483,
+        399489,
+        399839,
+        400380,
+        400421,
+        400422,
+        400526,
+        400620,
+        400688,
+        400705,
+        400736,
+        400770,
+        400878,
+        400926,
+        400951,
+        401172,
+        401313,
+        401395,
+        401520,
+        401738,
+        401805,
+        401813,
+        401966,
+        402509,
+        402547,
+        402607,
+        402608,
+        402770,
+        403158,
+        403400,
+        403462,
+        404221,
+        404231,
+        404366,
+        404429,
+        404431,
+        404517,
+        404609,
+        404817,
+        404888,
+        404962,
+        405191,
+        405484,
+        405656
+      ],
+      "n_members_ranked": 100,
+      "first_date": "2021-01-01"
+    },
+    {
+      "series_id": "g5_tail",
+      "kind": "tail_group",
+      "member_account_ids": "all accounts not otherwise listed",
+      "first_date": "2021-01-01"
+    }
+  ]
+}
