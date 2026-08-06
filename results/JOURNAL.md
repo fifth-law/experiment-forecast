@@ -133,3 +133,17 @@ Format:
   — likely the same composition story). Then: BF days as factor-deflated
   level observations, so a post-BF cutoff (Nov-27, bias −0.26) can see
   the December run-up regime through the BF week.
+
+## 008_xmas_per_series @ stage1 — 2026-08-06
+- hypothesis: Dec-18 (0.49, bias +0.14) is the BF composition story again;
+  a second per-series multiplier group over the Christmas window fixes it.
+- result: wMAPE 0.2342 vs 0.2345 — +0.13% relative, below the 0.3% bar.
+  Stall counter 1/3.
+- learned: partially falsified — Dec-18 gained some composition (0.49→
+  0.47) but its aggregate bias *worsened* (+0.14→+0.20; the multiplier
+  distribution skews high around the year boundary) and Dec-11 ticked
+  down. Christmas-window appetite is much less series-persistent than BF
+  appetite — plausibly because wind-down (deadline-driven) and lull
+  (restart-driven) behaviors differ per series and the group multiplier
+  averages them. Keeping the change (it is a small net win). Next: BF
+  days as factor-deflated level observations for the Nov-27 regime gap.
