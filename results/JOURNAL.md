@@ -50,3 +50,23 @@ Format:
   regime the trailing profile cannot see → next experiment: learned
   day-of-window factors for the year-boundary period. Black Friday
   under-forecast (Nov-13/20, bias −0.36) still untouched.
+
+## 003_shape_level @ stage1 — 2026-08-06
+- hypothesis: split the profile into weekday shape (last 4 clean obs,
+  normalised) × recent level (shape-deflated 14-day mean) so January stops
+  inheriting December-peak levels; specials unchanged from 002.
+- result: wMAPE 0.2515 vs 0.2529 — improved 0.55% relative. Current best,
+  but far below expectation.
+- learned: the mechanism is right where aimed — Jan-02 0.45→0.34, Jan-09
+  0.36→0.25, Dec-18 0.83→0.72, and even Nov-13/20 improved (level tracks
+  the November ramp) — but only 20/51 cutoffs improved. The give-back has
+  one signature: bias swings positive wherever the 14-day window contains
+  a transient peak (cutoff 12-04, window = Black Friday week: bias
+  −0.02→+0.20; 11-27 same; mid-August vacation rebound similar). Tail
+  groups (big, smooth) pay the variance cost (0.1799→0.1859) while
+  customers benefit (0.2855→0.2808). A naive 14-day mean level is too
+  twitchy around spikes — and the biggest spike is calendar-known.
+  Next: treat Black Friday week as learned special days (up-factors,
+  wider clip), which both fixes the Nov-13/20 under-forecast and keeps
+  BF week out of the level/profile windows that poison late-Nov/early-Dec
+  cutoffs.
