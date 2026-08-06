@@ -433,3 +433,17 @@ axis is adaptivity, not more calendar.
   8–14). Next: exponential recency weighting (half-life 1 year) of ALL
   learned calendar responses — hand-head factor ratios and GBM training
   rows alike — one mechanism, both heads.
+
+## 026_blend3_recency @ stage2 — 2026-08-06
+- hypothesis: half-life-1y recency weighting of all learned responses
+  tracks monotone drift (Dec-16 wind-down at +0.20 with 3 years seen).
+- result: wMAPE 0.2484 vs 0.2480 — worse by 0.16%. Rejected; 025 stays
+  champion. Stall counter 1/3.
+- learned: the split verdict is the finding — Dec-16 improved exactly as
+  aimed (0.401→0.380, bias +0.199→+0.167) and Oct-14 too, but every
+  stable response paid variance for it: the November BF cutoffs
+  (Nov-04/11/25) all worsened because BF appetite is year-stable and
+  down-weighting 2021/2022 just thins it. Drift is response-specific,
+  not global → next: recency weighting ONLY for the year-boundary
+  family (dec-types, xmas holidays, runup, xmas multiplier, jan_wk1),
+  flat weights elsewhere, GBM untouched.
