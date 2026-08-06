@@ -416,3 +416,20 @@ Dec-16 wind-down (+0.20). Signature of STEP CHANGES — onboarding ramps
 (c_387459 at 0.73), churn (2024-big accounts that fell out of the
 2025–26 reference window sit inside g5_tail), migrations. Stage2's
 axis is adaptivity, not more calendar.
+
+## 025_blend3_step @ stage2 — 2026-08-06
+- hypothesis: a step SWITCH (level := recent week when |log(L7/Lprev7)|
+  > 0.18) adapts to onboarding/churn/migration steps in ~1 week without
+  016's noise-amplification (it stays off on quiet series).
+- result: wMAPE 0.2480 vs 0.2508 — improved 1.12% relative. Current
+  stage2 best. Stall counter 0/3.
+- learned: gains broadly where steps live (Mar-04 −0.040, Sep-16 −0.027,
+  Oct-21/28, May-13) with only small collateral (Oct-07 +0.012) — the
+  high threshold is what 016 lacked. Remaining rocks: Dec-16 (0.40,
+  +0.20) — wind-down factors STILL over-predict with 3 years of
+  history, i.e. the dip deepens monotonically and a flat average lags
+  it; Feb-26 (0.39, −0.33) and the Sep-09/Sep-30/Oct-14 alternation —
+  step residuals at long leads (GBM lags start 14 days back for leads
+  8–14). Next: exponential recency weighting (half-life 1 year) of ALL
+  learned calendar responses — hand-head factor ratios and GBM training
+  rows alike — one mechanism, both heads.
