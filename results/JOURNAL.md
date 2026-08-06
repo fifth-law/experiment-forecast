@@ -513,3 +513,16 @@ dilutes. Runtime ~20 min per stage3 run.
   Next: split the xmas series multiplier into wind-down vs lull
   appetites (008's own flagged refinement, now with 4 boundaries +
   recency weighting) for the December composition residual.
+
+## 030_blend3_decsplit @ stage3 — 2026-08-06
+- hypothesis: the December composition residual is the wind-down vs lull
+  appetite split 008 flagged; two per-series multipliers fix it.
+- result: wMAPE 0.236060 vs 0.236039 — flat (−0.01%). Counter 1/3.
+- learned: falsified — per-series December appetite is not decomposable
+  into deadline vs restart behaviors at this data depth (or not stable
+  enough to estimate even with 4 boundaries + recency). The December
+  residual (bias ≈ 0, wMAPE 0.32–0.39) increasingly looks like the same
+  spike-timing noise as the erratic customers, concentrated in the two
+  strangest weeks of the year. Next: double the GBM training-reference
+  density (Monday+Thursday refs) — more (ref, lead) alignments per
+  calendar event and per step, the most general capacity lever left.
