@@ -147,3 +147,21 @@ Format:
   (restart-driven) behaviors differ per series and the group multiplier
   averages them. Keeping the change (it is a small net win). Next: BF
   days as factor-deflated level observations for the Nov-27 regime gap.
+
+## 009_bf_level_info @ stage1 — 2026-08-06
+- hypothesis: BF days deflated by factor×mult are valid level observations,
+  letting post-BF cutoffs (Nov-27) see the December run-up through the
+  spike.
+- result: wMAPE 0.2357 vs best 0.2342 — WORSE by 0.64%. Rejected; 008
+  stays the base. Stall counter 2/3.
+- learned: falsified with a useful mechanism lesson — deflating an event
+  by learned factors imports the event's year-over-year intensity drift
+  into the level: Nov-27 bias −0.26→−0.28 and 12-04 flipped +0.02→−0.14,
+  meaning 2023 BF ran *below* the 2021/2022-learned intensity, so
+  y/(factor×mult) under-recovered the underlying level. Deflation-as-
+  level-input is only safe when the factor is near 1 (mild events), never
+  for 2–3× spikes where a 15% drift is a 15% level error on the biggest
+  volume days of the year. Next (last shot before promotion): Ascension/
+  Pentecost cluster week-damping — May cutoffs oscillate +0.16/−0.11/
+  −0.19, and the factors there are ~0.9, small enough for deflation to
+  be safe under this lesson.
