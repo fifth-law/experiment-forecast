@@ -258,3 +258,21 @@ Format:
   −0.10..−0.16 biases on autumn-ramp and post-dip-recovery cutoffs that
   look like 14-day-level lag → next: damped per-series local trend
   applied by lead.
+
+## 016_damped_trend @ stage1 — 2026-08-06
+- hypothesis: remaining ±0.10–0.16 ramp/recovery biases are 14-day-level
+  lag; a hard-shrunk weekly growth ratio applied as g^(lead/7) on normal
+  days closes part of the gap now that events are out of the windows.
+- result: wMAPE 0.2256 vs best 0.2232 — WORSE by 1.1%. Rejected; 015
+  stays the base. Stall counter 1/3.
+- learned: cleanly falsified, with the failure exactly where the
+  mechanism applies most — lead 1–7 unchanged (0.2112→0.2110), lead 8–14
+  degraded (0.2354→0.2403). Even shrunk to half-weight and clipped, a
+  7d/7d ratio imports more variance than the lag bias it removes. Level
+  lag is real but not extrapolatable at weekly granularity with these
+  series. The cheap single-mechanism well is thinning: remaining rocks
+  are factor drift (Dec-18, May) and event-week composition, all
+  n=2-observation problems. Next: the long-flagged LightGBM global
+  model over the same calendar/level feature knowledge — interactions
+  (series × day-type × lead) are where a learned model can still beat
+  the multiplicative stack.
