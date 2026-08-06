@@ -311,3 +311,19 @@ Format:
   network-friendly) at equal thirds. Deliberately NOT tuning the blend
   weight on the eval (one scalar fitted to 51 cutoffs is cheap stage
   overfitting; equal weights or nothing).
+
+## 019_blend3 @ stage1 — 2026-08-06
+- hypothesis: a mean-calibrated (L2) GBM head adds diversity the 50/50
+  blend lacks; equal thirds beats 0.2108.
+- result: wMAPE 0.2090 vs 0.2108 — improved 0.86% relative. Current
+  best. Runtime 364 s (budget-relevant: each GBM head costs ~3.5 min).
+- learned: accepted, but the real finding is in worst_series mining:
+  Jan-02 sits at 0.68 with bias −0.67 because the GBM heads predict
+  ZERO for that entire horizon — 017's L14 base is rolling(14,
+  min_periods=5) over clean days and Dec 20–Jan 1 are all special, so
+  the base is NaN and the base>1 guard zeroes every series. 017 has
+  been silently eating a ~1.0-wMAPE cutoff (its other 50 cutoffs are
+  better than its 0.2189 suggests), and the blend diluted the hole to
+  −0.67. Next: base fallback cascade L14→L28→L56 in a fixed GBM (020),
+  then re-blend (021). The Jan-02 zero-hole is the only one of its kind
+  in stage1 (no other 14-day window is >9/14 special).
