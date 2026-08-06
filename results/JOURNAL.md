@@ -295,3 +295,19 @@ Format:
   next: 50/50 blend of 015 and 017, classic variance reduction across
   model families. Justified lightgbm (installed extra) per the
   modeling-guardrails note.
+
+## 018_blend @ stage1 — 2026-08-06
+- hypothesis: 015 and 017 are differently wrong (bias ≈0 network-
+  calibrated factors vs −5.5% median-chasing interactions); a 50/50
+  blend beats both.
+- result: wMAPE 0.2108 vs 0.2189 — improved 3.70% relative. Current
+  best, and the largest single step of the loop.
+- learned: everything improved at once — lead 1–7 0.2104→0.2007, lead
+  8–14 0.2274→0.2209, customers 0.2442→0.2363, tail 0.1622→0.1535,
+  network 0.1064→0.0908, bias −5.5%→−3.0% — confirming the residuals
+  are substantially uncorrelated. Model families, not more factors, are
+  now the axis of progress. Next: add a third differently-calibrated
+  component — an L2-objective variant of the GBM (mean-predictor,
+  network-friendly) at equal thirds. Deliberately NOT tuning the blend
+  weight on the eval (one scalar fitted to 51 cutoffs is cheap stage
+  overfitting; equal weights or nothing).
