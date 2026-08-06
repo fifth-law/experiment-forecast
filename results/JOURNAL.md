@@ -327,3 +327,20 @@ Format:
   −0.67. Next: base fallback cascade L14→L28→L56 in a fixed GBM (020),
   then re-blend (021). The Jan-02 zero-hole is the only one of its kind
   in stage1 (no other 14-day window is >9/14 special).
+
+## 020_lgbm_basefix @ stage1 — 2026-08-06
+- hypothesis: the L14→L28→L56 base cascade removes the Jan-02 zero-hole;
+  standalone GBM gains roughly Jan-02's volume share (~1.5–2%).
+- result: wMAPE 0.2050 vs blend best 0.2090 — improved 1.91% relative
+  over the BLEND, 6.3% over broken 017. The standalone GBM now beats the
+  three-way blend. Current best.
+- learned: the estimate was far too conservative because the prediction
+  hole was only half the bug — TRAINING refs near the 2021/2022 year
+  boundaries also had NaN bases, so their rows were silently dropped by
+  the base>1 filter and the GBM had never learned the Christmas window
+  properly. With those rows restored: tail 0.1622→0.1439, lead 8–14
+  0.2274→0.2150, network 0.1064→0.0890. Lesson for the record: a
+  data-prep guard (min_periods + filter) can silently starve a model of
+  exactly the regime it most needs; worst-cutoff mining caught it only
+  because the blend diluted the zero into a visible −0.67 bias. Next:
+  re-blend 015 + fixed L1/L2 heads (021).
