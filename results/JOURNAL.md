@@ -387,3 +387,20 @@ Format:
   60→20) inside the champion blend — 200k interaction-rich rows may be
   underfit at 63 leaves, and the walk-forward eval punishes overfit
   honestly if not.
+
+## 024_blend3_capacity @ stage1 — 2026-08-06
+- hypothesis: the GBM heads are underfit at 63 leaves / min 60; doubling
+  capacity clears the bar inside the champion blend.
+- result: wMAPE 0.199104 vs 0.199565 — improved 0.231%, under the bar.
+  New best, but the THIRD consecutive sub-0.3% experiment.
+- learned: capacity was worth a fraction of a percent, not a step —
+  the stage1 error floor for this data/feature space is ≈0.199.
+
+## STAGE PROMOTION: stage1 → stage2 — 2026-08-06
+
+Stall rule fired (022 +0.26% head-only, 023 +0.269%, 024 +0.231% — all
+below 0.3% relative). Stage1 final state: best 0.199104
+(024_blend3_capacity), from a 0.293827 seasonal-naive floor — −32.2%
+relative. Per protocol: re-running the stage1 top 3 (024, 023, 021) on
+stage2 (2024 cutoffs, train from 2021), then continuing the loop on
+stage2 only.
