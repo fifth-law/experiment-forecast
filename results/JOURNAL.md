@@ -497,3 +497,19 @@ c_399062/c_397088 similar shapes. Near-zero bias + huge wMAPE =
 spike-timing volatility: the |err|-optimal forecast there is the
 conditional MEDIAN, which only the L1 head provides and the blend
 dilutes. Runtime ~20 min per stage3 run.
+
+## 029_blend3_bursty @ stage3 — 2026-08-06
+- hypothesis: per-series blend weights sliding toward the L1 (median-
+  calibrated) head as ρ = median/mean falls cut the erratic-customer
+  error mass without touching smooth series.
+- result: wMAPE 0.236039 vs 0.237190 — improved 0.50% relative. Current
+  best. Stall counter 0/3.
+- learned: surgical — every bursty series improved (c_397088 0.655→
+  0.640, c_387459 0.654→0.646, c_399062 0.516→0.507, c_206225 0.483→
+  0.474) while smooth series stayed byte-identical (g5_tail, c_386811
+  unchanged to 4 decimals). The remaining erratic-series error (still
+  0.5–0.65) is spike-timing itself — likely irreducible from series
+  history alone; would need order-book/dispatch-plan exogenous data.
+  Next: split the xmas series multiplier into wind-down vs lull
+  appetites (008's own flagged refinement, now with 4 boundaries +
+  recency weighting) for the December composition residual.
