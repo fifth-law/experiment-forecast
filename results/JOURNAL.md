@@ -118,3 +118,18 @@ Format:
   around the holiday cluster, not a missing closing day. Keeping the
   day-type (harmless by construction). Next: per-series BF-week
   multipliers for the Nov-13/20 composition error.
+
+## 007_bf_per_series @ stage1 — 2026-08-06
+- hypothesis: Nov-13/20 stuck at 0.39 with bias ≈ 0 ⇒ composition error;
+  per-series BF multipliers (actual vs pooled-expected over past BF weeks,
+  k=500 shrinkage toward 1, clip [0.2, 3]) convert it into signal.
+- result: wMAPE 0.2345 vs 0.2417 — improved 2.97% relative. Current best.
+  Biggest single step since 002.
+- learned: exactly as aimed — Nov-13 0.39→0.29, Nov-20 0.39→0.29, Nov-06
+  0.24→0.23, bias unchanged ≈0, nothing else moved. Customers differ
+  strongly and *persistently* (2021/2022 appetite predicts 2023) in BF
+  intensity. This mechanism should generalize: next, the same per-series
+  multipliers for the Christmas window (Dec-18 residual 0.49, bias +0.14
+  — likely the same composition story). Then: BF days as factor-deflated
+  level observations, so a post-BF cutoff (Nov-27, bias −0.26) can see
+  the December run-up regime through the BF week.
