@@ -1,0 +1,39 @@
+# FROZEN eval configuration — covered by eval/EVAL_LOCK. Do not edit.
+#
+# Backtest design: "start back in time, then jump forward and widen".
+# A cutoff is a forecast origin (always a Monday). The model sees data with
+# date <= cutoff and predicts the next `horizon_days` days. Stages move the
+# cutoff block forward through time; optimization begins on stage1 and is
+# promoted forward per the protocol in CLAUDE.md. The holdout block is
+# locked and reserved for the final report of the chosen model.
+
+snapshot: data/snapshot/daily_shipments.parquet
+series_meta: data/snapshot/series_meta.json
+horizon_days: 14
+primary_metric: wmape
+
+stages:
+  stage1:
+    description: "Back in time: all 2023 Mondays, training data from 2021-01-01"
+    train_start: "2021-01-01"
+    first_cutoff: "2023-01-02"
+    last_cutoff: "2023-12-18"
+
+  stage2:
+    description: "Jump forward: all 2024 Mondays"
+    train_start: "2021-01-01"
+    first_cutoff: "2024-01-01"
+    last_cutoff: "2024-12-16"
+
+  stage3:
+    description: "Modern era: 2025 Mondays through May 2026"
+    train_start: "2021-01-01"
+    first_cutoff: "2025-01-06"
+    last_cutoff: "2026-05-18"
+
+  holdout:
+    description: "LOCKED: June-July 2026. Final report of the chosen model only."
+    locked: true
+    train_start: "2021-01-01"
+    first_cutoff: "2026-06-01"
+    last_cutoff: "2026-07-20"

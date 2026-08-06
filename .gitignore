@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+
+# Raw MCP result dumps from snapshot extraction (intermediate; the frozen
+# parquet + manifest in data/snapshot/ are the committed artifacts)
+data/raw/mcp_results/
+
+# Generated extraction SQL (fully derivable: gen_extract_sql.py + membership.csv)
+data/extract/sql/
+
+# Scratch
+*.tmp
+.DS_Store

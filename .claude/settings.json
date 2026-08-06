@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "mcp__Snowflake__sql_exec_tool",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/scripts/hooks/save_snowflake_result.py\""
+          }
+        ]
+      }
+    ]
+  }
+}
