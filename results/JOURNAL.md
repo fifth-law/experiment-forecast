@@ -196,3 +196,19 @@ Format:
   appetite is series-specific (B2B dies in July, B2C less so) → next:
   per-series damp multipliers, the same generalization that made 007 the
   biggest win. December run-up weeks still queued.
+
+## 012_vac_per_series @ stage1 — 2026-08-06
+- hypothesis: the residual May/summer wMAPE is per-series composition;
+  007-style multipliers over damp days convert it into signal.
+- result: wMAPE 0.2332 vs best 0.2285 — WORSE by 2.06%. Rejected; 011
+  stays the base. Stall counter 1/3.
+- learned: rejected for a mechanistic reason worth keeping: every summer
+  cutoff swung positive (07-17 bias −0.01→+0.04, 07-24 −0.04→+0.02 with
+  wMAPE +0.04..+0.05) — the multiplier distribution skews >1 because the
+  estimator's base sits at the cluster *anchor* while the damp days run
+  up to 6 weeks later, so any series-level trend over that gap is
+  misread as vacation appetite. 007 worked because its base ends 4 days
+  before the event. Per-series event multipliers need tight bases; with
+  long anchor→day gaps use pooled factors only. (Whether vacation
+  appetite is truly persistent per series remains unknown — the estimator
+  couldn't measure it.)
