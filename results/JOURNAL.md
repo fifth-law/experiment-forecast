@@ -356,3 +356,20 @@ Format:
   (017/020) −8%, blending (018–021) −9% of what remained. Runtime ~8 min
   per stage run (budget edge — no room for a fourth GBM head; further
   gains must come from inside the heads or the hand stack).
+
+## 022_lgbm_edges @ stage1 — 2026-08-06
+- hypothesis: to_special/since_special distance features let trees learn
+  pre-closure pull-forward and post-closure rebound at event edges
+  (worst non-Dec cutoffs straddle Easter/Ascension edges).
+- result: head 0.2045 vs head-baseline 0.2050 (+0.26%); does not touch
+  the stage best 0.2001. Stall counter 1/3.
+- learned: the mechanism is real but self-sabotaging as built — Easter
+  edges improved exactly as aimed (04-10 −0.023, 04-03 −0.013, May and
+  BF shoulders too) while January REGRESSED (Jan-02 +0.020): distances
+  to the xmas-window specials hand the trees a year-boundary handle to
+  overfit at n=2, partially re-poisoning what 020 fixed. Also noted:
+  head-only experiments can never reset the stall counter (the rule
+  measures against the stage best, i.e. the blend champion) → test head
+  refinements inside the blend from now on. Next: edge distances
+  excluding the xmas window (it is already densely day-typed), as a
+  blend variant.
