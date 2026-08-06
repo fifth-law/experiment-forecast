@@ -87,3 +87,22 @@ Format:
   (4) Dec-18 remains the worst cutoff (0.67, bias +0.41): Dec 20–23
   wind-down and Dec 27–30 lull still forecast at full volume → next:
   year-boundary day-type factors.
+
+## 005_xmas_window @ stage1 — 2026-08-06
+- hypothesis: dec20–23 (wind-down) and dec27–30 (lull) as learned
+  day-types remove the Dec-18/Dec-11 over-forecast; accepted risk that
+  Jan-02's level window keeps only one clean day.
+- result: wMAPE 0.2417 vs 0.2471 — improved 2.2% relative. Current best.
+  Fourth consecutive improvement.
+- learned: Dec-18 0.67→0.49 (bias +0.41→+0.14), Dec-11 0.35→0.25, and the
+  Jan-02 "risk" actually improved it (0.32→0.27) — Jan 2 alone is a decent
+  January level proxy. Jan-09 slipped (bias +0.14→+0.18): January decays
+  within the month, so even true early-January levels over-forecast
+  mid-January. Remaining rocks, in rough size order: (a) Nov-13/20 both
+  0.39 with bias ≈ 0 — per-series BF composition (pooled factor right in
+  aggregate, wrong per customer); (b) Nov-27 0.31 bias −0.26 — December
+  run-up regime invisible from a pre-BF level window; (c) May cluster
+  biases ±0.16 — the Friday after Ascension (Danish bridge day,
+  "indeklemt fredag") is not in the special set; (d) Dec-18 residual 0.49.
+  Next: ascension bridge day (3-line change, proven mechanism), then
+  per-series event multipliers for BF week.
