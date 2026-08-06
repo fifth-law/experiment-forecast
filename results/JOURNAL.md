@@ -373,3 +373,17 @@ Format:
   refinements inside the blend from now on. Next: edge distances
   excluding the xmas window (it is already densely day-typed), as a
   blend variant.
+
+## 023_blend3_edges @ stage1 — 2026-08-06
+- hypothesis: edge distances minus the xmas window keep 022's edge gains
+  without the January damage; in-blend this clears the 0.3% bar.
+- result: wMAPE 0.199565 vs 0.200103 — improved 0.269%, a NEW BEST but
+  0.03pp under the bar. Stall counter 2/3 (per the pre-registered
+  criterion). Network wMAPE 0.0776.
+- learned: the January regression is gone (exclusion worked) and the
+  edge gains survive blending, but at blend scale the mechanism is worth
+  ~0.27%, not 0.5%+. One more sub-bar experiment promotes to stage2.
+  Last shot: GBM capacity bump (num_leaves 63→127, min_data_in_leaf
+  60→20) inside the champion blend — 200k interaction-rich rows may be
+  underfit at 63 leaves, and the walk-forward eval punishes overfit
+  honestly if not.
