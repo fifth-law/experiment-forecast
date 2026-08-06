@@ -539,3 +539,14 @@ dilutes. Runtime ~20 min per stage3 run.
   (all-weekday refs) would hit diminishing returns on highly correlated
   adjacent-day refs. Next instead: rebalance capacity to the 2× data —
   num_boost_round 300→450 (300 was chosen for half this data).
+
+## 032_blend3_rounds @ stage3 — 2026-08-06
+- hypothesis: 300 rounds was budgeted for half the data; 450 rebalances
+  capacity to the dual-ref training set.
+- result: wMAPE 0.233639 vs 0.234628 — improved 0.44% relative. Current
+  best. Counter 0/3.
+- learned: the same-axis pattern is textbook asymptote (data 2× → +0.61%,
+  rounds 1.5× → +0.44%): each step yields ~2/3 of the last. One more
+  coupled step (lr 0.06→0.045, rounds 450→650 — the conventional
+  slower-learning trade) before the stall rule decides. Runtime now
+  ~45 min/run.
