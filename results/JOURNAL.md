@@ -165,3 +165,18 @@ Format:
   Pentecost cluster week-damping — May cutoffs oscillate +0.16/−0.11/
   −0.19, and the factors there are ~0.9, small enough for deflation to
   be safe under this lesson.
+
+## 010_ascension_weeks @ stage1 — 2026-08-06
+- hypothesis: the whole Ascension→Pentecost 3-week cluster is damped on
+  non-holiday days too; learned week factors applied to targets and (safely,
+  since ~0.9) as level-window deflation fix the May bias oscillation.
+- result: wMAPE 0.2333 vs 0.2342 — improved 0.40% relative. Current best.
+  Stall counter reset.
+- learned: worked in both directions as designed — 05-08 bias +0.16→+0.12,
+  05-15 +0.13→+0.11, 05-29 −0.19→−0.14, with wMAPE down 0.015–0.02 at each.
+  06-12 (+0.155) barely moved: it sits *outside* the cluster — that bias,
+  plus 07-10 (+0.17) and 07-24/31 (−0.17/−0.17), is the summer vacation
+  fade (industriferie, ISO weeks ~25–32). Same machinery, ISO-week anchor,
+  learned per-week factors → next experiment. December run-up weeks
+  (Nov-27 −0.26) queued after with the same generalized machinery
+  (up-factors this time).
