@@ -242,3 +242,19 @@ Format:
   (post-NY surge decaying to the true level) — a forward-anchored base
   ([anchor+7, anchor+21)) rather than "weeks 2–4 low", which would break
   the level chain at the February boundary.
+
+## 015_jan_week1 @ stage1 — 2026-08-06
+- hypothesis: January's anomaly is week 1 being HIGH (post-NY backlog +
+  returns surge), not weeks 2–4 low; jan_wk1 as an up-anomaly with a
+  forward base ([anchor+7, anchor+21)) fixes Jan-09/16 without breaking
+  the February boundary.
+- result: wMAPE 0.2232 vs 0.2248 — improved 0.71% relative. Current best.
+- learned: all three January cutoffs improved (Jan-02 0.27→0.25, Jan-09
+  0.27→0.22 with bias +0.18→+0.09, Jan-16 0.25→0.22, +0.15→+0.10) and
+  nothing else moved. The forward-base option makes the damp machinery
+  handle anomalies adjacent to regime breaks. Remaining: Dec-18 0.47
+  (+0.20, factor drift), May cluster (±0.09–0.14, possibly asc-factor
+  drift), November event weeks (bias ≈0 — composition/noise), scattered
+  −0.10..−0.16 biases on autumn-ramp and post-dip-recovery cutoffs that
+  look like 14-day-level lag → next: damped per-series local trend
+  applied by lead.
