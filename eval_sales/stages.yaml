@@ -1,0 +1,45 @@
+# FROZEN eval configuration — covered by eval_sales/EVAL_LOCK. Do not edit.
+#
+# Backtest design: a cutoff is one *night*. On the night of day c the model sees
+# every invoice line created up to and including c, plus shipments booked up to
+# and including c, and must predict the settled sales-invoiced total for the
+# calendar month that c falls in — per series, for all 105 series. Cutoffs are
+# every day of the stage window, which is what "forecast nightly" means: the
+# same month gets re-forecast ~30 times, from a cold start on the 1st to a
+# near-nowcast on the last night.
+#
+# Stages move the cutoff block forward through time, mirroring the shipment
+# eval's "start back in time, then jump forward and widen" design. Note the
+# metric itself changed shape across these eras (see INVOICE_FORECAST.md):
+# billing moved from arrears to same-month during 2025, and month totals only
+# started settling *after* month end in the modern era. stage3 is the
+# production-relevant era; earlier stages are a warm-up whose ranking is not
+# expected to transfer cleanly.
+
+triangle: data/snapshot_sales/monthly_sales_triangle.parquet
+series_meta: data/snapshot_sales/series_meta.json
+shipments: data/snapshot/daily_shipments.parquet
+train_start_month: "2021-01"
+primary_metric: wmape
+
+stages:
+  stage1:
+    description: "Back in time: every night of 2023, history from 2021-01"
+    first_cutoff: "2023-01-01"
+    last_cutoff: "2023-12-31"
+
+  stage2:
+    description: "Jump forward: every night of 2024"
+    first_cutoff: "2024-01-01"
+    last_cutoff: "2024-12-31"
+
+  stage3:
+    description: "Modern era: every night from 2025-01 through 2026-04"
+    first_cutoff: "2025-01-01"
+    last_cutoff: "2026-04-30"
+
+  holdout:
+    description: "LOCKED: May-June 2026, the last two settled months. Final report only."
+    locked: true
+    first_cutoff: "2026-05-01"
+    last_cutoff: "2026-06-30"

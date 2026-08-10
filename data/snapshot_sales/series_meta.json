@@ -1,0 +1,1120 @@
+{
+  "snapshot_taken": "2026-08-10",
+  "first_month": "2021-01",
+  "last_month": "2026-06",
+  "max_create_offset": 120,
+  "target_definition": "net sales invoiced excl. VAT in DKK, SUM(SALES_PRICE_EXCL_VAT_IN_DKK) over MARTS.ANALYTICS.SALES_INVOICE_DETAILS, attributed to the calendar month of POSTING_DATE (the invoice posting date). Credit notes and corrections net out; deleted invoices and invoice lines are already excluded upstream by the mart. Amounts are stored as integer oere.",
+  "triangle_definition": "create_offset = days from the first of the posting month to DATE(INVOICE_LINE_CREATED_AT), clipped into [0, max_create_offset]. Summing increments with create_offset <= (cutoff - month start) reproduces exactly what a nightly job would have seen on the night of that cutoff; summing all increments gives the settled month total.",
+  "known_limitation": "reconstructed from one point-in-time snapshot: invoice lines that existed on a past night but were later deleted are absent from the mart entirely, so the as-of view can slightly understate what was visible at the time.",
+  "membership_note": "identical to the shipment snapshot's frozen split (data/extract/membership.csv): top-100 customers of the reference window 2025-08-06..2026-08-05 by shipments, remaining ranked accounts in bands g1..g4, g5_tail catching everything else. The 105 series partition network invoiced sales exactly.",
+  "series": [
+    {
+      "series_id": "c_386811",
+      "kind": "customer",
+      "core_account_id": 386811,
+      "name": "Matas",
+      "rank": 1,
+      "shipment_first_date": "2023-01-18",
+      "first_invoiced_month": "2023-02"
+    },
+    {
+      "series_id": "c_385616",
+      "kind": "customer",
+      "core_account_id": 385616,
+      "name": "Vend Marketplaces AS",
+      "rank": 2,
+      "shipment_first_date": "2022-09-07",
+      "first_invoiced_month": "2022-11"
+    },
+    {
+      "series_id": "c_392013",
+      "kind": "customer",
+      "core_account_id": 392013,
+      "name": "Vend Marketplaces OY",
+      "rank": 3,
+      "shipment_first_date": "2023-11-17",
+      "first_invoiced_month": "2024-01"
+    },
+    {
+      "series_id": "c_252603",
+      "kind": "customer",
+      "core_account_id": 252603,
+      "name": "Firtal Web A/S",
+      "rank": 4,
+      "shipment_first_date": "2019-03-30",
+      "first_invoiced_month": "2021-01"
+    },
+    {
+      "series_id": "c_25",
+      "kind": "customer",
+      "core_account_id": 25,
+      "name": "Entertainment trading Aps",
+      "rank": 5,
+      "shipment_first_date": "2019-03-21",
+      "first_invoiced_month": "2021-01"
+    },
+    {
+      "series_id": "c_387459",
+      "kind": "customer",
+      "core_account_id": 387459,
+      "name": "DILLING A/S",
+      "rank": 6,
+      "shipment_first_date": "2024-01-29",
+      "first_invoiced_month": "2024-02"
+    },
+    {
+      "series_id": "c_257565",
+      "kind": "customer",
+      "core_account_id": 257565,
+      "name": "Sinful ApS",
+      "rank": 7,
+      "shipment_first_date": "2019-08-05",
+      "first_invoiced_month": "2021-01"
+    },
+    {
+      "series_id": "c_23728",
+      "kind": "customer",
+      "core_account_id": 23728,
+      "name": "Luxplus ApS",
+      "rank": 8,
+      "shipment_first_date": "2019-04-01",
+      "first_invoiced_month": "2021-01"
+    },
+    {
+      "series_id": "c_399062",
+      "kind": "customer",
+      "core_account_id": 399062,
+      "name": "SPORT24",
+      "rank": 9,
+      "shipment_first_date": "2025-04-28",
+      "first_invoiced_month": "2024-12"
+    },
+    {
+      "series_id": "c_177708",
+      "kind": "customer",
+      "core_account_id": 177708,
+      "name": "Bodylab ApS",
+      "rank": 10,
+      "shipment_first_date": "2019-04-01",
+      "first_invoiced_month": "2021-01"
+    },
+    {
+      "series_id": "c_399115",
+      "kind": "customer",
+      "core_account_id": 399115,
+      "name": "Vend Marketplaces ApS",
+      "rank": 11,
+      "shipment_first_date": "2024-11-22",
+      "first_invoiced_month": "2025-01"
+    },
+    {
+      "series_id": "c_26690",
+      "kind": "customer",
+      "core_account_id": 26690,
+      "name": "Med24.dk ApS",
+      "rank": 12,
+      "shipment_first_date": "2019-06-11",
+      "first_invoiced_month": "2021-01"
+    },
+    {
+      "series_id": "c_372021",
+      "kind": "customer",
+      "core_account_id": 372021,
+      "name": "Cykelgear A/S",
+      "rank": 13,
+      "shipment_first_date": "2022-01-24",
+      "first_invoiced_month": "2022-02"
+    },
+    {
+      "series_id": "c_199826",
+      "kind": "customer",
+      "core_account_id": 199826,
+      "name": "YarnLiving",
+      "rank": 14,
+      "shipment_first_date": "2019-07-27",
+      "first_invoiced_month": "2021-01"
+    },
+    {
+      "series_id": "c_84515",
+      "kind": "customer",
+      "core_account_id": 84515,
+      "name": "Watery ApS",
+      "rank": 15,
+      "shipment_first_date": "2022-11-02",
+      "first_invoiced_month": "2022-12"
+    },
+    {
+      "series_id": "c_401490",
+      "kind": "customer",
+      "core_account_id": 401490,
+      "name": "Blocket",
+      "rank": 16,
+      "shipment_first_date": "2025-06-23",
+      "first_invoiced_month": "2025-07"
+    },
+    {
+      "series_id": "c_276385",
+      "kind": "customer",
+      "core_account_id": 276385,
+      "name": "WhiteAway A/S",
+      "rank": 17,
+      "shipment_first_date": "2019-07-01",
+      "first_invoiced_month": "2021-01"
+    },
+    {
+      "series_id": "c_173537",
+      "kind": "customer",
+      "core_account_id": 173537,
+      "name": "Supervin Hjørring A/S",
+      "rank": 18,
+      "shipment_first_date": "2020-04-08",
+      "first_invoiced_month": "2021-01"
+    },
+    {
+      "series_id": "c_369661",
+      "kind": "customer",
+      "core_account_id": 369661,
+      "name": "MollyogMy ApS",
+      "rank": 19,
+      "shipment_first_date": "2021-12-03",
+      "first_invoiced_month": "2022-01"
+    },
+    {
+      "series_id": "c_400181",
+      "kind": "customer",
+      "core_account_id": 400181,
+      "name": "Helsam Gruppen",
+      "rank": 20,
+      "shipment_first_date": "2025-03-26",
+      "first_invoiced_month": "2025-04"
+    },
+    {
+      "series_id": "c_398131",
+      "kind": "customer",
+      "core_account_id": 398131,
+      "name": "GulogGratis.dk A/S",
+      "rank": 21,
+      "shipment_first_date": "2025-01-27",
+      "first_invoiced_month": "2025-02"
+    },
+    {
+      "series_id": "c_382027",
+      "kind": "customer",
+      "core_account_id": 382027,
+      "name": "Fashionbystrand",
+      "rank": 22,
+      "shipment_first_date": "2023-01-25",
+      "first_invoiced_month": "2023-02"
+    },
+    {
+      "series_id": "c_344104",
+      "kind": "customer",
+      "core_account_id": 344104,
+      "name": "Ditur.dk ApS",
+      "rank": 23,
+      "shipment_first_date": "2020-08-26",
+      "first_invoiced_month": "2021-01"
+    },
+    {
+      "series_id": "c_206225",
+      "kind": "customer",
+      "core_account_id": 206225,
+      "name": "LAKRIDS BY BÜLOW",
+      "rank": 24,
+      "shipment_first_date": "2019-07-18",
+      "first_invoiced_month": "2021-01"
+    },
+    {
+      "series_id": "c_402473",
+      "kind": "customer",
+      "core_account_id": 402473,
+      "name": "Web Sundhed",
+      "rank": 25,
+      "shipment_first_date": "2025-10-31",
+      "first_invoiced_month": "2025-10"
+    },
+    {
+      "series_id": "c_376922",
+      "kind": "customer",
+      "core_account_id": 376922,
+      "name": "Luksusbaby A/S",
+      "rank": 26,
+      "shipment_first_date": "2021-11-15",
+      "first_invoiced_month": "2021-12"
+    },
+    {
+      "series_id": "c_381875",
+      "kind": "customer",
+      "core_account_id": 381875,
+      "name": "Yuaia Haircare",
+      "rank": 27,
+      "shipment_first_date": "2022-05-05",
+      "first_invoiced_month": "2022-05"
+    },
+    {
+      "series_id": "c_397088",
+      "kind": "customer",
+      "core_account_id": 397088,
+      "name": "AO B2C",
+      "rank": 28,
+      "shipment_first_date": "2024-09-30",
+      "first_invoiced_month": null
+    },
+    {
+      "series_id": "c_400860",
+      "kind": "customer",
+      "core_account_id": 400860,
+      "name": "AndrupVin.dk",
+      "rank": 29,
+      "shipment_first_date": "2025-06-06",
+      "first_invoiced_month": "2025-07"
+    },
+    {
+      "series_id": "c_402823",
+      "kind": "customer",
+      "core_account_id": 402823,
+      "name": "DSF WINE A/S",
+      "rank": 30,
+      "shipment_first_date": "2025-10-30",
+      "first_invoiced_month": "2025-10"
+    },
+    {
+      "series_id": "c_96674",
+      "kind": "customer",
+      "core_account_id": 96674,
+      "name": "BMD Trading Denmark Aps",
+      "rank": 31,
+      "shipment_first_date": "2019-04-01",
+      "first_invoiced_month": "2021-01"
+    },
+    {
+      "series_id": "c_400805",
+      "kind": "customer",
+      "core_account_id": 400805,
+      "name": "WanHe",
+      "rank": 32,
+      "shipment_first_date": "2025-04-04",
+      "first_invoiced_month": "2025-04"
+    },
+    {
+      "series_id": "c_367319",
+      "kind": "customer",
+      "core_account_id": 367319,
+      "name": "Nailster A/S",
+      "rank": 33,
+      "shipment_first_date": "2021-05-11",
+      "first_invoiced_month": "2021-06"
+    },
+    {
+      "series_id": "c_287588",
+      "kind": "customer",
+      "core_account_id": 287588,
+      "name": "Cykelpartner.dk",
+      "rank": 34,
+      "shipment_first_date": "2019-10-28",
+      "first_invoiced_month": "2021-01"
+    },
+    {
+      "series_id": "c_191066",
+      "kind": "customer",
+      "core_account_id": 191066,
+      "name": "HK Medie Group ApS",
+      "rank": 35,
+      "shipment_first_date": "2019-03-29",
+      "first_invoiced_month": "2021-01"
+    },
+    {
+      "series_id": "c_401743",
+      "kind": "customer",
+      "core_account_id": 401743,
+      "name": "PWT Group A/S",
+      "rank": 36,
+      "shipment_first_date": "2026-02-05",
+      "first_invoiced_month": "2026-02"
+    },
+    {
+      "series_id": "c_394259",
+      "kind": "customer",
+      "core_account_id": 394259,
+      "name": "Australian Bodycare",
+      "rank": 37,
+      "shipment_first_date": "2024-01-12",
+      "first_invoiced_month": "2024-01"
+    },
+    {
+      "series_id": "c_389096",
+      "kind": "customer",
+      "core_account_id": 389096,
+      "name": "BoldLight ApS",
+      "rank": 38,
+      "shipment_first_date": "2023-04-21",
+      "first_invoiced_month": "2023-04"
+    },
+    {
+      "series_id": "c_218501",
+      "kind": "customer",
+      "core_account_id": 218501,
+      "name": "Norlys Holding",
+      "rank": 39,
+      "shipment_first_date": "2019-03-29",
+      "first_invoiced_month": "2021-01"
+    },
+    {
+      "series_id": "c_259225",
+      "kind": "customer",
+      "core_account_id": 259225,
+      "name": "Badmintonshoppen-Retur",
+      "rank": 40,
+      "shipment_first_date": "2021-07-26",
+      "first_invoiced_month": "2021-08"
+    },
+    {
+      "series_id": "c_132184",
+      "kind": "customer",
+      "core_account_id": 132184,
+      "name": "Hairlust ApS",
+      "rank": 41,
+      "shipment_first_date": "2019-07-26",
+      "first_invoiced_month": "2021-01"
+    },
+    {
+      "series_id": "c_378875",
+      "kind": "customer",
+      "core_account_id": 378875,
+      "name": "Muscle House",
+      "rank": 42,
+      "shipment_first_date": "2022-01-13",
+      "first_invoiced_month": "2022-01"
+    },
+    {
+      "series_id": "c_383286",
+      "kind": "customer",
+      "core_account_id": 383286,
+      "name": "Vinylpladen ApS",
+      "rank": 43,
+      "shipment_first_date": "2022-04-21",
+      "first_invoiced_month": "2022-05"
+    },
+    {
+      "series_id": "c_377976",
+      "kind": "customer",
+      "core_account_id": 377976,
+      "name": "Tradera Marketplace",
+      "rank": 44,
+      "shipment_first_date": "2022-03-25",
+      "first_invoiced_month": "2022-06"
+    },
+    {
+      "series_id": "c_403515",
+      "kind": "customer",
+      "core_account_id": 403515,
+      "name": "LINDS A/S",
+      "rank": 45,
+      "shipment_first_date": "2025-11-11",
+      "first_invoiced_month": "2026-03"
+    },
+    {
+      "series_id": "c_268926",
+      "kind": "customer",
+      "core_account_id": 268926,
+      "name": "E-Handel 9000 ApS",
+      "rank": 46,
+      "shipment_first_date": "2019-08-26",
+      "first_invoiced_month": "2022-12"
+    },
+    {
+      "series_id": "c_374692",
+      "kind": "customer",
+      "core_account_id": 374692,
+      "name": "Onyxcookware ApS",
+      "rank": 47,
+      "shipment_first_date": "2022-01-11",
+      "first_invoiced_month": "2022-02"
+    },
+    {
+      "series_id": "c_361328",
+      "kind": "customer",
+      "core_account_id": 361328,
+      "name": "Scandinavian Biolabs ApS",
+      "rank": 48,
+      "shipment_first_date": "2021-02-02",
+      "first_invoiced_month": "2021-03"
+    },
+    {
+      "series_id": "c_384336",
+      "kind": "customer",
+      "core_account_id": 384336,
+      "name": "Too Good To Go ApS",
+      "rank": 49,
+      "shipment_first_date": "2022-09-01",
+      "first_invoiced_month": "2022-10"
+    },
+    {
+      "series_id": "c_385902",
+      "kind": "customer",
+      "core_account_id": 385902,
+      "name": "Mayflower",
+      "rank": 50,
+      "shipment_first_date": "2022-10-28",
+      "first_invoiced_month": "2022-11"
+    },
+    {
+      "series_id": "c_387799",
+      "kind": "customer",
+      "core_account_id": 387799,
+      "name": "TKJ Trading Aps",
+      "rank": 51,
+      "shipment_first_date": "2023-01-11",
+      "first_invoiced_month": "2023-02"
+    },
+    {
+      "series_id": "c_346934",
+      "kind": "customer",
+      "core_account_id": 346934,
+      "name": "Myextensions",
+      "rank": 52,
+      "shipment_first_date": "2021-11-08",
+      "first_invoiced_month": "2021-12"
+    },
+    {
+      "series_id": "c_382201",
+      "kind": "customer",
+      "core_account_id": 382201,
+      "name": "BLR APS",
+      "rank": 53,
+      "shipment_first_date": "2022-07-26",
+      "first_invoiced_month": "2022-08"
+    },
+    {
+      "series_id": "c_392152",
+      "kind": "customer",
+      "core_account_id": 392152,
+      "name": "Winther Studio ApS",
+      "rank": 54,
+      "shipment_first_date": "2023-10-25",
+      "first_invoiced_month": "2023-11"
+    },
+    {
+      "series_id": "c_390495",
+      "kind": "customer",
+      "core_account_id": 390495,
+      "name": "Quickparts",
+      "rank": 55,
+      "shipment_first_date": "2023-09-05",
+      "first_invoiced_month": "2023-10"
+    },
+    {
+      "series_id": "c_403428",
+      "kind": "customer",
+      "core_account_id": 403428,
+      "name": "Hong kong Soon limited",
+      "rank": 56,
+      "shipment_first_date": "2025-11-07",
+      "first_invoiced_month": "2026-03"
+    },
+    {
+      "series_id": "c_9895",
+      "kind": "customer",
+      "core_account_id": 9895,
+      "name": "BYIC",
+      "rank": 57,
+      "shipment_first_date": "2019-07-29",
+      "first_invoiced_month": "2021-01"
+    },
+    {
+      "series_id": "c_402390",
+      "kind": "customer",
+      "core_account_id": 402390,
+      "name": "Shop Group / GLADKOKKEN NO",
+      "rank": 58,
+      "shipment_first_date": "2025-08-20",
+      "first_invoiced_month": "2025-08"
+    },
+    {
+      "series_id": "c_365808",
+      "kind": "customer",
+      "core_account_id": 365808,
+      "name": "Gastrotools ApS",
+      "rank": 59,
+      "shipment_first_date": "2021-05-03",
+      "first_invoiced_month": "2021-06"
+    },
+    {
+      "series_id": "c_402036",
+      "kind": "customer",
+      "core_account_id": 402036,
+      "name": "Maya Freya Aps",
+      "rank": 60,
+      "shipment_first_date": "2025-07-29",
+      "first_invoiced_month": "2025-07"
+    },
+    {
+      "series_id": "c_389541",
+      "kind": "customer",
+      "core_account_id": 389541,
+      "name": "Summerbird A/S",
+      "rank": 61,
+      "shipment_first_date": "2023-07-04",
+      "first_invoiced_month": "2023-08"
+    },
+    {
+      "series_id": "c_387231",
+      "kind": "customer",
+      "core_account_id": 387231,
+      "name": "avXperten",
+      "rank": 62,
+      "shipment_first_date": "2024-10-16",
+      "first_invoiced_month": "2024-11"
+    },
+    {
+      "series_id": "c_403947",
+      "kind": "customer",
+      "core_account_id": 403947,
+      "name": "Kicks AB",
+      "rank": 63,
+      "shipment_first_date": "2026-01-22",
+      "first_invoiced_month": "2026-01"
+    },
+    {
+      "series_id": "c_405616",
+      "kind": "customer",
+      "core_account_id": 405616,
+      "name": "Goodiebox",
+      "rank": 64,
+      "shipment_first_date": "2026-07-10",
+      "first_invoiced_month": null
+    },
+    {
+      "series_id": "c_397777",
+      "kind": "customer",
+      "core_account_id": 397777,
+      "name": "DistributionPlus A/S",
+      "rank": 65,
+      "shipment_first_date": "2024-10-07",
+      "first_invoiced_month": "2024-12"
+    },
+    {
+      "series_id": "c_399290",
+      "kind": "customer",
+      "core_account_id": 399290,
+      "name": "LikeLondon",
+      "rank": 66,
+      "shipment_first_date": "2025-04-04",
+      "first_invoiced_month": "2025-05"
+    },
+    {
+      "series_id": "c_377298",
+      "kind": "customer",
+      "core_account_id": 377298,
+      "name": "Asendia / Parcel4You",
+      "rank": 67,
+      "shipment_first_date": "2022-03-14",
+      "first_invoiced_month": "2022-02"
+    },
+    {
+      "series_id": "c_382888",
+      "kind": "customer",
+      "core_account_id": 382888,
+      "name": "Sindico Group A/S",
+      "rank": 68,
+      "shipment_first_date": "2022-04-26",
+      "first_invoiced_month": "2022-05"
+    },
+    {
+      "series_id": "c_309172",
+      "kind": "customer",
+      "core_account_id": 309172,
+      "name": "MAULUND A/S",
+      "rank": 69,
+      "shipment_first_date": "2020-03-11",
+      "first_invoiced_month": "2021-01"
+    },
+    {
+      "series_id": "c_384572",
+      "kind": "customer",
+      "core_account_id": 384572,
+      "name": "Nail4you Aps",
+      "rank": 70,
+      "shipment_first_date": "2022-10-17",
+      "first_invoiced_month": "2022-11"
+    },
+    {
+      "series_id": "c_8156",
+      "kind": "customer",
+      "core_account_id": 8156,
+      "name": "Noella Wholesale ApS",
+      "rank": 71,
+      "shipment_first_date": "2019-03-31",
+      "first_invoiced_month": "2021-10"
+    },
+    {
+      "series_id": "c_395218",
+      "kind": "customer",
+      "core_account_id": 395218,
+      "name": "Cdl Trading Aps",
+      "rank": 72,
+      "shipment_first_date": "2024-03-06",
+      "first_invoiced_month": "2024-04"
+    },
+    {
+      "series_id": "c_396922",
+      "kind": "customer",
+      "core_account_id": 396922,
+      "name": "Le Zest ApS",
+      "rank": 73,
+      "shipment_first_date": "2024-06-12",
+      "first_invoiced_month": "2024-06"
+    },
+    {
+      "series_id": "c_269091",
+      "kind": "customer",
+      "core_account_id": 269091,
+      "name": "Saphe A/S",
+      "rank": 74,
+      "shipment_first_date": "2021-02-18",
+      "first_invoiced_month": "2021-03"
+    },
+    {
+      "series_id": "c_290778",
+      "kind": "customer",
+      "core_account_id": 290778,
+      "name": "Albert Larsen ApS",
+      "rank": 75,
+      "shipment_first_date": "2025-02-24",
+      "first_invoiced_month": "2025-03"
+    },
+    {
+      "series_id": "c_403230",
+      "kind": "customer",
+      "core_account_id": 403230,
+      "name": "FirstGrade ApS",
+      "rank": 76,
+      "shipment_first_date": "2025-10-28",
+      "first_invoiced_month": "2025-10"
+    },
+    {
+      "series_id": "c_399224",
+      "kind": "customer",
+      "core_account_id": 399224,
+      "name": "Welldium",
+      "rank": 77,
+      "shipment_first_date": "2025-07-10",
+      "first_invoiced_month": "2025-07"
+    },
+    {
+      "series_id": "c_402167",
+      "kind": "customer",
+      "core_account_id": 402167,
+      "name": "Familien Digetvej ApS",
+      "rank": 78,
+      "shipment_first_date": "2025-07-29",
+      "first_invoiced_month": "2025-07"
+    },
+    {
+      "series_id": "c_400434",
+      "kind": "customer",
+      "core_account_id": 400434,
+      "name": "Dafolo A/S",
+      "rank": 79,
+      "shipment_first_date": "2025-11-12",
+      "first_invoiced_month": "2025-11"
+    },
+    {
+      "series_id": "c_351136",
+      "kind": "customer",
+      "core_account_id": 351136,
+      "name": "GoGift.com A/S",
+      "rank": 80,
+      "shipment_first_date": "2020-11-20",
+      "first_invoiced_month": "2021-01"
+    },
+    {
+      "series_id": "c_396518",
+      "kind": "customer",
+      "core_account_id": 396518,
+      "name": "ENAMEL Copenhagen",
+      "rank": 81,
+      "shipment_first_date": "2024-05-22",
+      "first_invoiced_month": "2024-06"
+    },
+    {
+      "series_id": "c_400693",
+      "kind": "customer",
+      "core_account_id": 400693,
+      "name": "Helsegrossisten.dk",
+      "rank": 82,
+      "shipment_first_date": "2025-09-03",
+      "first_invoiced_month": "2025-09"
+    },
+    {
+      "series_id": "c_400834",
+      "kind": "customer",
+      "core_account_id": 400834,
+      "name": "Aktieselskabet Glerups.dk",
+      "rank": 83,
+      "shipment_first_date": "2025-05-28",
+      "first_invoiced_month": "2025-06"
+    },
+    {
+      "series_id": "c_402741",
+      "kind": "customer",
+      "core_account_id": 402741,
+      "name": "Wavell",
+      "rank": 84,
+      "shipment_first_date": "2025-09-23",
+      "first_invoiced_month": "2025-09"
+    },
+    {
+      "series_id": "c_393021",
+      "kind": "customer",
+      "core_account_id": 393021,
+      "name": "DanGuitar",
+      "rank": 85,
+      "shipment_first_date": "2023-10-19",
+      "first_invoiced_month": "2023-11"
+    },
+    {
+      "series_id": "c_402234",
+      "kind": "customer",
+      "core_account_id": 402234,
+      "name": "Beatdown",
+      "rank": 86,
+      "shipment_first_date": "2025-09-22",
+      "first_invoiced_month": "2025-09"
+    },
+    {
+      "series_id": "c_395922",
+      "kind": "customer",
+      "core_account_id": 395922,
+      "name": "Bevco A/S",
+      "rank": 87,
+      "shipment_first_date": "2024-04-19",
+      "first_invoiced_month": "2024-04"
+    },
+    {
+      "series_id": "c_397165",
+      "kind": "customer",
+      "core_account_id": 397165,
+      "name": "The Army Painter",
+      "rank": 88,
+      "shipment_first_date": "2024-08-15",
+      "first_invoiced_month": "2024-09"
+    },
+    {
+      "series_id": "c_388439",
+      "kind": "customer",
+      "core_account_id": 388439,
+      "name": "Kagegrisen.dk ApS",
+      "rank": 89,
+      "shipment_first_date": "2025-03-28",
+      "first_invoiced_month": "2025-03"
+    },
+    {
+      "series_id": "c_392004",
+      "kind": "customer",
+      "core_account_id": 392004,
+      "name": "Price Mart SL",
+      "rank": 90,
+      "shipment_first_date": "2023-09-25",
+      "first_invoiced_month": "2023-10"
+    },
+    {
+      "series_id": "c_401901",
+      "kind": "customer",
+      "core_account_id": 401901,
+      "name": "P4U / Corazon",
+      "rank": 91,
+      "shipment_first_date": "2025-07-14",
+      "first_invoiced_month": "2025-07"
+    },
+    {
+      "series_id": "c_13877",
+      "kind": "customer",
+      "core_account_id": 13877,
+      "name": "Pulsure.dk ApS",
+      "rank": 92,
+      "shipment_first_date": "2019-04-24",
+      "first_invoiced_month": "2021-01"
+    },
+    {
+      "series_id": "c_402247",
+      "kind": "customer",
+      "core_account_id": 402247,
+      "name": "Perfect Jeans ApS",
+      "rank": 93,
+      "shipment_first_date": "2025-08-01",
+      "first_invoiced_month": "2025-07"
+    },
+    {
+      "series_id": "c_387785",
+      "kind": "customer",
+      "core_account_id": 387785,
+      "name": "Vinhuset  APS",
+      "rank": 94,
+      "shipment_first_date": "2024-01-05",
+      "first_invoiced_month": "2024-01"
+    },
+    {
+      "series_id": "c_382278",
+      "kind": "customer",
+      "core_account_id": 382278,
+      "name": "Caprock ApS",
+      "rank": 95,
+      "shipment_first_date": "2025-11-07",
+      "first_invoiced_month": "2025-11"
+    },
+    {
+      "series_id": "c_391896",
+      "kind": "customer",
+      "core_account_id": 391896,
+      "name": "Kaffekompagniet ApS",
+      "rank": 96,
+      "shipment_first_date": "2023-09-15",
+      "first_invoiced_month": "2023-10"
+    },
+    {
+      "series_id": "c_400390",
+      "kind": "customer",
+      "core_account_id": 400390,
+      "name": "Nordico Supply ApS",
+      "rank": 97,
+      "shipment_first_date": "2025-05-06",
+      "first_invoiced_month": "2025-05"
+    },
+    {
+      "series_id": "c_402243",
+      "kind": "customer",
+      "core_account_id": 402243,
+      "name": "Ecom World ApS",
+      "rank": 98,
+      "shipment_first_date": "2025-08-11",
+      "first_invoiced_month": "2025-08"
+    },
+    {
+      "series_id": "c_385816",
+      "kind": "customer",
+      "core_account_id": 385816,
+      "name": "Entertainment Trading A/S",
+      "rank": 99,
+      "shipment_first_date": "2022-09-16",
+      "first_invoiced_month": "2022-11"
+    },
+    {
+      "series_id": "c_400735",
+      "kind": "customer",
+      "core_account_id": 400735,
+      "name": "e-handel aps",
+      "rank": 100,
+      "shipment_first_date": "2025-05-05",
+      "first_invoiced_month": "2025-05"
+    },
+    {
+      "series_id": "g1_tail",
+      "kind": "tail_group",
+      "member_account_ids": [
+        352389,
+        367594,
+        382947,
+        387780,
+        389932,
+        390135,
+        395285,
+        396110,
+        397845,
+        399366,
+        399933,
+        401079,
+        402574,
+        403192,
+        403351,
+        404720
+      ],
+      "n_members_ranked": 16,
+      "first_invoiced_month": "2021-07"
+    },
+    {
+      "series_id": "g2_tail",
+      "kind": "tail_group",
+      "member_account_ids": [
+        22206,
+        26449,
+        79561,
+        132664,
+        218857,
+        247194,
+        365387,
+        382637,
+        383788,
+        385878,
+        388019,
+        389020,
+        390549,
+        394645,
+        397721,
+        400835,
+        400944,
+        401163,
+        401647,
+        402222,
+        402466,
+        402577
+      ],
+      "n_members_ranked": 22,
+      "first_invoiced_month": "2021-01"
+    },
+    {
+      "series_id": "g3_tail",
+      "kind": "tail_group",
+      "member_account_ids": [
+        27427,
+        240834,
+        301751,
+        349531,
+        357076,
+        368916,
+        369042,
+        372023,
+        372943,
+        374694,
+        382039,
+        384092,
+        386850,
+        392532,
+        392533,
+        394839,
+        397985,
+        398046,
+        398533,
+        399417,
+        399867,
+        399910,
+        399952,
+        400511,
+        400743,
+        400759,
+        401948,
+        401967,
+        402451,
+        403244,
+        403270,
+        403320
+      ],
+      "n_members_ranked": 32,
+      "first_invoiced_month": "2021-01"
+    },
+    {
+      "series_id": "g4_tail",
+      "kind": "tail_group",
+      "member_account_ids": [
+        4,
+        283,
+        7911,
+        48257,
+        54898,
+        59604,
+        65045,
+        95584,
+        109465,
+        113750,
+        185654,
+        191704,
+        197594,
+        242463,
+        246556,
+        278753,
+        286381,
+        287902,
+        315218,
+        326784,
+        330767,
+        340758,
+        340853,
+        346321,
+        361464,
+        362765,
+        368130,
+        368333,
+        369110,
+        370723,
+        372244,
+        381750,
+        383211,
+        383642,
+        383961,
+        385669,
+        385880,
+        385940,
+        389283,
+        390034,
+        390048,
+        390303,
+        390834,
+        393338,
+        394952,
+        395000,
+        397011,
+        397423,
+        397658,
+        398079,
+        398135,
+        398331,
+        399009,
+        399072,
+        399205,
+        399305,
+        399483,
+        399489,
+        399839,
+        400380,
+        400421,
+        400422,
+        400526,
+        400620,
+        400688,
+        400705,
+        400736,
+        400770,
+        400878,
+        400926,
+        400951,
+        401172,
+        401313,
+        401395,
+        401520,
+        401738,
+        401805,
+        401813,
+        401966,
+        402509,
+        402547,
+        402607,
+        402608,
+        402770,
+        403158,
+        403400,
+        403462,
+        404221,
+        404231,
+        404366,
+        404429,
+        404431,
+        404517,
+        404609,
+        404817,
+        404888,
+        404962,
+        405191,
+        405484,
+        405656
+      ],
+      "n_members_ranked": 100,
+      "first_invoiced_month": "2021-01"
+    },
+    {
+      "series_id": "g5_tail",
+      "kind": "tail_group",
+      "member_account_ids": "all accounts not otherwise listed",
+      "first_invoiced_month": "2021-01"
+    }
+  ]
+}

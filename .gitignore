@@ -7,9 +7,11 @@ __pycache__/
 # Raw MCP result dumps from snapshot extraction (intermediate; the frozen
 # parquet + manifest in data/snapshot/ are the committed artifacts)
 data/raw/mcp_results/
+data/raw_sales/mcp_results/
 
-# Generated extraction SQL (fully derivable: gen_extract_sql.py + membership.csv)
+# Generated extraction SQL (fully derivable: gen_*_sql.py + membership.csv)
 data/extract/sql/
+data/extract_sales/sql/
 
 # Scratch
 *.tmp

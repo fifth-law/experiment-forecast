@@ -98,3 +98,25 @@ model and leave holdout to the human owner.
 uv sync --extra models
 uv run python -m eval.eval --experiment 000_seasonal_naive --stage stage1
 ```
+
+## Second track: monthly sales invoiced
+
+This repo now holds a sibling track that forecasts a different metric — **total
+sales invoiced for the whole calendar month, nightly, per customer**, on the same
+frozen 105-series split. It has its own frozen eval, snapshot, experiments and
+leaderboard, and its own loop doc:
+
+```
+uv run python -m eval_sales.eval --experiment <name> --stage <stage>
+```
+
+- **Read `SALES_FORECAST.md` before touching it.** Same loop, same hard rules,
+  different metric and a different eval contract (nightly cutoffs, month totals,
+  a reporting-triangle snapshot that makes the backtest point-in-time honest).
+- Paths: `eval_sales/`, `experiments_sales/`, `results_sales/`,
+  `data/snapshot_sales/`, `data/extract_sales/`.
+- `data/snapshot/` (daily shipments) is **shared** — the sales eval hands it to
+  models as a leading indicator, and it is frozen for both tracks. Both
+  `eval/EVAL_LOCK` and `eval_sales/EVAL_LOCK` cover its manifest.
+- The two tracks are independent optimization problems. Do not mix leaderboards,
+  and do not assume a result transfers from one metric to the other.
