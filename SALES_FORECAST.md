@@ -100,19 +100,40 @@ is leakage. Determinism is part of the contract.
 **stage3 is the production-relevant era.** Promotion rule as in `CLAUDE.md`: three
 consecutive experiments each failing to improve the stage best by 0.3% relative.
 
+## Two model families
+
+The eval hands every model two frames, so a model may use either or both of:
+
+- **previous months' invoiced totals + shipments booked to date** — the information
+  set the owner specified (family A);
+- **the current month's invoice accrual** on top of that — the draft invoice lines
+  already created this month (family B).
+
+The boundary is a modelling choice recorded in each `EXPERIMENT.md`, not something
+the eval enforces, so both families compete on one leaderboard without unfreezing
+the eval. **State which family a new experiment belongs to in its `EXPERIMENT.md`.**
+
+They fail in opposite halves of the month, which is the central result so far:
+shipments know the month before the invoices exist, and the invoices know it better
+once they do (stage3, days 1-10: 0.2981 for family A vs 0.3433 for family B; days
+21-end: 0.2929 vs 0.1626).
+
 ## Where it stands
 
 | | stage1 | stage3 (production era) |
 |---|---|---|
-| best | **005_seasonal_anchor** 0.1066 | **007_recent_curve** 0.2416 |
-| baseline (`000_prev_month`) | 0.2132 | 0.3638 |
+| best overall (family B) | 010_growth_anchor_ladder 0.1088 | **010_growth_anchor_ladder 0.2237** |
+| best in family A | 009_level_times_growth 0.1708 | **009_level_times_growth 0.2957** |
+| baseline `000_prev_month` | 0.2132 | 0.3638 |
+| (stage1 best) | **005_seasonal_anchor 0.1066** | — |
 
-The two stages disagree on the winner, and the reason is structural: on stage1 the
-month is fully visible by month end (late-month wMAPE 0.015), so the problem is
-level and seasonality; on stage3 a quarter of the month is still invisible on the
-last night (late-month wMAPE 0.163), so the problem is completing what cannot be
-seen. See `results_sales/JOURNAL.md` for the full log and the ranked list of next
-hypotheses.
+The accrual is worth ~24% of the error on stage3 (0.2957 → 0.2237), all of it after
+roughly day 10. The two stages disagree on the winner, and the reason is structural:
+on stage1 the month is fully visible by month end (late-month wMAPE 0.015), so the
+problem is level and seasonality; on stage3 a quarter of the month is still invisible
+on the last night (late-month wMAPE 0.159), so the problem is completing what cannot
+be seen. See `results_sales/JOURNAL.md` for the full log and the ranked next steps —
+stage2 has not been run at all yet.
 
 ## Re-extracting
 

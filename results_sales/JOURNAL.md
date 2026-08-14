@@ -134,42 +134,127 @@ confirmed; the drift, not the window, was the dominant term.
 
 ---
 
+## 2026-08-10 (later) — scope clarified: previous months + shipments booked to date
+
+The owner clarified the intended information set: predict the final end-of-month
+bill from **previous months plus shipments booked to date**, each night. That is a
+narrower input set than 002-007 use — those lean on the *current month's invoice
+accrual* (draft lines already created), which was never asked for. The target
+definition is unchanged, so no re-extraction was needed; 003 was the only existing
+model in the requested family and it was a crude first pass.
+
+Models are now tagged by family. The eval hands both frames to every model, so the
+family boundary is a modelling choice recorded in each `EXPERIMENT.md` rather than
+something the eval enforces — deliberately, so both families compete on one
+leaderboard without unfreezing the eval.
+
+### 008_volume_ratio — stage1 0.1849, stage3 0.3961 — FAILED on stage3
+Family: previous months + shipments only. 003 done properly: price shrunk towards the
+network price (empirical-Bayes ratio, 2000-shipment half-weight) over 6 settled
+months instead of a hard 50-shipment cutoff over 3, and a weekday-shaped
+remaining-days volume forecast instead of a flat rate. Better than 003 on stage1
+(0.1930 → 0.1849) but **worse than the 000 baseline on stage3** (0.3961 vs 0.3638)
+at +0.4% bias. A variance verdict, not a bias one: rebuilding the bill as
+`price x volume` requires estimating each series' DKK-per-shipment *level*, and that
+level is unstable in the modern era — a transitional posting month mixes two shipment
+months, and credit notes do not scale with volume at all. Also flat across the month
+(0.1853 / 0.1849 / 0.1845 on stage1), as expected when the billing lag is 1 and the
+driver is complete from the 1st.
+
+*(An earlier run of 008 was superseded before commit by a performance-only
+vectorisation of the remaining-days forecast; the refactor reproduced stage1 to
+4 decimals, and the pre-refactor run record was removed so every leaderboard row is
+reproducible from committed code.)*
+
+### 009_level_times_growth — stage1 **0.1708**, stage3 **0.2957** — BEST in the requested family
+Family: previous months + shipments only. Stop rebuilding the bill; anchor on it and
+let shipments supply only the *change*:
+
+    yhat = mean(last 3 settled months) * clip(shrunk volume growth)
+
+with a **two-month** volume window (`ship(M) + ship(M-1)`), which sidesteps the lag
+question that sank 008 — whichever month is billed, it is inside the window. The
+price level cancels; only its movement has to be measured. Beats 008 by 8% on stage1
+and 25% on stage3, beats the baseline in both eras (-20% / -19%), and is nearly
+unbiased (+0.1% / -2.4%).
+
+**The finding that matters most:** this family is *better than the accrual models
+early in the month* and much worse later.
+
+| stage3 | days 1-10 | days 11-20 | days 21-end | pooled |
+|---|---|---|---|---|
+| 007_recent_curve (accrual) | 0.3433 | 0.2218 | **0.1626** | 0.2416 |
+| 009_level_times_growth (prev months + shipments) | **0.2981** | 0.2962 | 0.2929 | 0.2957 |
+
+Shipments know the month before the invoices exist; the invoices know it better once
+they do. The same crossover holds on stage1 (009 0.1693 vs 005 0.2330 over days 1-10).
+
+### 010_growth_anchor_ladder — stage1 0.1088, stage3 **0.2237** — BEST overall
+Uses both (so *outside* the requested family). 007 with its flat level anchor replaced
+by 009's level x growth estimate. Best stage3 result so far, -7.4% against 007, with
+the best late-month number of any model (dom 21-end 0.1585) and a much better
+early-month number than 007 (0.3091 vs 0.3433).
+
+This is structurally what 004 tried and failed. The post-mortem was right about why:
+004's anchor was +5.2% biased and compounded with the accrual's positive bias, while
+009 is near-unbiased. Same structure, unbiased anchor, and it works.
+
+Note it is still *worse* early in the month than 009 alone (0.3091 vs 0.2981), so the
+weight curve `w = f(d)` over-trusts the accrual in the first days. That is now the
+cheapest remaining win.
+
+---
+
 ## Standings
 
-| stage1 | wMAPE | | stage3 (production era) | wMAPE |
-|---|---|---|---|---|
-| **005_seasonal_anchor** | **0.1066** | | **007_recent_curve** | **0.2416** |
-| 006_measured_settlement | 0.1102 | | 006_measured_settlement | 0.2565 |
-| 007_recent_curve | 0.1105 | | 002_chain_ladder | 0.2648 |
-| 002_chain_ladder | 0.1126 | | 005_seasonal_anchor | 0.2861 |
-| 004_blend | 0.1153 | | 000_prev_month | 0.3638 |
-| 003_shipment_price | 0.1930 | | | |
-| 000_prev_month | 0.2132 | | | |
-| 001_last_settled | 0.3104 | | | |
+**Family A — previous months + shipments booked to date only** (the requested inputs)
 
-**Ranks reshuffle across eras**, which per the protocol is itself the finding:
-005's seasonal anchor wins on 2023 and loses on 2025-26, while 007's drift-tracking
-curve is neutral on 2023 and wins on 2025-26. The stage1 problem is dominated by
-*level and seasonality* (the month is fully visible by month end, so late-month
-error is ~0.015); the stage3 problem is dominated by *invisibility* (dom 21-end is
-still 0.163, because a quarter of the month has not been created yet on the last
-night). They are effectively two different problems, and the modern one is harder:
-0.242 vs 0.107.
+| | stage1 | stage3 (production era) |
+|---|---|---|
+| **009_level_times_growth** | **0.1708** | **0.2957** |
+| 008_volume_ratio | 0.1849 | 0.3961 |
+| 003_shipment_price | 0.1930 | — |
+| 000_prev_month (baseline) | 0.2132 | 0.3638 |
+| 001_last_settled | 0.3104 | — |
+
+**Family B — also uses the current month's invoice accrual**
+
+| | stage1 | stage3 (production era) |
+|---|---|---|
+| **010_growth_anchor_ladder** | 0.1088 | **0.2237** |
+| 005_seasonal_anchor | **0.1066** | 0.2861 |
+| 006_measured_settlement | 0.1102 | 0.2565 |
+| 007_recent_curve | 0.1105 | 0.2416 |
+| 002_chain_ladder | 0.1126 | 0.2648 |
+| 004_blend_ladder_shipments | 0.1153 | — |
+
+**What the accrual is worth:** 0.2957 → 0.2237 on stage3, i.e. the draft invoice
+lines cut the error by ~24% beyond what previous months and shipments give. All of
+that gain lands after roughly day 10; before then the accrual is a liability.
+
+**Ranks still reshuffle across eras**, which per the protocol is the finding: 005 wins
+stage1 and is 4th on stage3. The two eras are different problems — on stage1 the month
+is fully visible by month end (late-month wMAPE 0.015, and exactly 0.0000 on the last
+two nights) so the task is level and seasonality; on stage3 a quarter of the month has
+not been created yet on the last night (late-month wMAPE 0.159) so the task is
+completing what cannot be seen. The modern era is much harder: 0.224 vs 0.107.
 
 ## Next hypotheses, in priority order
 
-1. **The -8.7% stage3 bias is still the biggest single lever.** 006 and 007 each
-   took a bite; what remains is likely per-series curve heterogeneity — big
-   month-end-billed customers and continuously-billed tail groups have genuinely
-   different `f(d)`, and one network curve applied per series cannot be right for
-   both. Try a shrunk per-series curve (series curve blended towards the network
-   curve by volume).
-2. **Combine 005 and 007** (seasonal anchor + recency-weighted curve). They fix
-   disjoint halves of the model and neither has been tested against the other's
-   change. Watch for the 004 failure mode — check the bias signs first.
-3. **Explicit late-arrival model for stage3.** Rather than dividing by `f(d)`,
-   forecast the post-month-end wave as its own quantity; it is ~27% of the month
-   and arrives on a fairly regular +8..+15 day schedule.
-4. **Shipments as the anchor, done properly** (004 revisited on stage3): with
-   same-month billing the current month's volume is visible daily, which should
-   be worth much more in 2026 than it was in 2023.
+1. **Fix the early-month weight curve** (cheapest win). 010 is worse than 009 alone
+   over days 1-10, so `w = f(d)` over-trusts the accrual in the first days. Try
+   `w = f(d) ** p` with p > 1, or pick `w` per day-of-month by minimising error on
+   settled months — a measured weight rather than an assumed one.
+2. **The -8.9% stage3 bias.** 006 (settlement window) and 007 (curve drift) each took
+   a bite; what remains is likely per-series curve heterogeneity — month-end-billed
+   customers and continuously-billed tail groups genuinely have different `f(d)`, and
+   one network curve cannot fit both. Try a per-series curve shrunk to the network one.
+3. **Seasonality in 009's anchor.** 005 showed a same-month-last-year anchor beats a
+   flat mean on stage1; 009 still uses a flat 3-month mean. That change is orthogonal
+   to everything in 010.
+4. **Explicit late-arrival model.** Rather than dividing by `f(d)`, forecast the
+   post-month-end creation wave as its own quantity — it is ~27% of a modern month and
+   arrives on a fairly regular +8..+15 day schedule.
+5. **Promotion discipline.** stage2 has not been run at all. Before any further
+   tuning, run the top models on stage2 to check the stage1/stage3 story holds in the
+   transition year.
